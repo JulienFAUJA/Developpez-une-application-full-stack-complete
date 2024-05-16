@@ -9,9 +9,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
 import { CoreModule } from './core/core.module';
+import { ArticlesListComponent } from './pages/articles-list/articles-list.component';
+import { ThemesListComponent } from './pages/themes-list/themes-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent, ArticlesListComponent, ThemesListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
