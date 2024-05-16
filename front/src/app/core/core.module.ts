@@ -4,12 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import * as fr from '@angular/common/locales/fr';
 import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { ArticleComponent } from './components/article/article.component';
 import { ThemeComponent } from './components/theme/theme.component';
-import { MatCardModule } from '@angular/material/card';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -21,17 +18,13 @@ import { MatCardModule } from '@angular/material/card';
     CommonModule, 
     RouterModule, 
     HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule
+    MaterialModule
+
   ],
   exports: [
     HeaderComponent,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule
+    ArticleComponent,
+    MaterialModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
 })
