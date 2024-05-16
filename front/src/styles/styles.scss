@@ -12,9 +12,10 @@ button {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    &.purple_btn {
-        width: 100%;
+    width: 100%;
         max-width: 250px; // Set a max-width for button as well
+    &.purple_btn {
+        
         background-color: #7763C5;
         color: white;
         &:hover {

@@ -1,6 +1,7 @@
+
 <div class="register-container">
-    <img src="./assets/images/logo_p6.png" alt="MDD Logo" class="logo">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h3>Inscription</h3>
       <div class="form-group">
         <label for="username">Nom d’utilisateur</label>
         <input formControlName="username" type="text" id="username">

@@ -1,7 +1,7 @@
 <div class="header-container">
     <img src="./assets/images/logo_p6_mini.png" alt="MDD Logo" class="logo ">
      <ul class="header_nav_ul header_item">
-        <li class="nav_item_li header_item"><a routerLink="/dashboard" routerLinkActive="active-item">Articles</a></li>
+        <li class="nav_item_li header_item"><a routerLink="/articles" routerLinkActive="active-item">Articles</a></li>
         <li class="nav_item_li header_item"><a routerLink="/themes" routerLinkActive="active-item">Thèmes</a></li>
         <li class="nav_item_li header_item">
             <a class="user_icon" routerLink="/profile" routerLinkActive="active-item">
@@ -9,4 +9,10 @@
             </a>
         </li>
      </ul>
+     
   </div>
+  <a class="back" (click)="back()">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="west"></mat-icon>
+  </a>
+
+

@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ArticleComponent } from './components/article/article.component';
 import { ThemeComponent } from './components/theme/theme.component';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -23,13 +23,15 @@ import { ThemeComponent } from './components/theme/theme.component';
     HttpClientModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   exports: [
     HeaderComponent,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
 })

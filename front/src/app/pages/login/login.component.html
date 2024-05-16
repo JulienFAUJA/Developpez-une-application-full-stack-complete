@@ -1,6 +1,7 @@
 <div class="login-container">
-    <img src="./assets/images/logo_p6.png" alt="MDD Logo" class="logo">
+    
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h3>Connexion</h3>
       <div class="form-group">
         <label for="emailOrUsername">E-mail ou nom d’utilisateur</label>
         <input formControlName="emailOrUsername" type="text" id="emailOrUsername">
