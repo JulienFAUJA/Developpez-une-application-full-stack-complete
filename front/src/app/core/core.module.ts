@@ -7,25 +7,48 @@ import { RouterModule } from '@angular/router';
 import { ArticleComponent } from './components/article/article.component';
 import { ThemeComponent } from './components/theme/theme.component';
 import { MaterialModule } from '../material/material.module';
+import { ArticleDetailComponent } from '../pages/article-detail/article-detail.component';
+import { ThemesListComponent } from '../pages/themes-list/themes-list.component';
+import { ArticlesListComponent } from '../pages/articles-list/articles-list.component';
+import { HomeComponent } from '../pages/home/home.component';
+import { LoginComponent } from '../pages/login/login.component';
+import { RegisterComponent } from '../pages/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from '../pages/user/user.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ArticleComponent,
-    ThemeComponent
+    ThemeComponent,
+    HomeComponent, 
+    LoginComponent, 
+    RegisterComponent, 
+    ArticlesListComponent, 
+    ThemesListComponent, 
+    ArticleDetailComponent,
+    UserComponent
   ],
   imports: [
     CommonModule, 
     RouterModule, 
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
 
   ],
   exports: [
     HeaderComponent,
     ArticleComponent,
     ThemeComponent,
-    MaterialModule
+    HomeComponent, 
+    LoginComponent, 
+    RegisterComponent, 
+    ArticlesListComponent, 
+    ThemesListComponent, 
+    ArticleDetailComponent,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
 })
