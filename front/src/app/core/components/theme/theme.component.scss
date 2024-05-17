@@ -1,0 +1,23 @@
+mat-card{
+    margin: 25px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: rgb(236, 236, 236);
+    .titre{
+        text-align: left;
+        left: 0;
+        margin-left: 0;
+        padding-left: 0;
+    }
+    
+}
+
+mat-card-footer {
+    display: flex;
+    justify-content: center; /* Centre tous les éléments à l'intérieur du footer */
+    align-items: center; /* Centre verticalement si nécessaire */
+}
+
+.subscribe_btn {
+    margin: 10px; /* Espace autour du bouton */
+}

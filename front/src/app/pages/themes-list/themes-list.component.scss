@@ -1,0 +1,21 @@
+.feed{
+    padding: 5%;
+    height:max-content;
+    background-color: blue;
+    padding: 0;
+    app-theme{
+        margin: 0;
+        width: 48%;
+        &:nth-child(even){
+            float: left;
+        }
+        &:nth-child(odd){
+            float: right;
+        }
+    }
+
+}
+
+
+
+

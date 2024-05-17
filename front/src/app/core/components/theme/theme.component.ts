@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Theme } from '../../models/theme.model';
 
 @Component({
   selector: 'app-theme',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme.component.scss']
 })
 export class ThemeComponent implements OnInit {
-
+  @Input() theme!:Theme;
   constructor() { }
 
   ngOnInit(): void {

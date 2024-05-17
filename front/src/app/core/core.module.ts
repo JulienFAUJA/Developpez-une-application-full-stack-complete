@@ -24,6 +24,7 @@ import { MaterialModule } from '../material/material.module';
   exports: [
     HeaderComponent,
     ArticleComponent,
+    ThemeComponent,
     MaterialModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
