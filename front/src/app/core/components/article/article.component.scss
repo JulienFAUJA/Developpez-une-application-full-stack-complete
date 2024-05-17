@@ -1,8 +1,12 @@
-
-    
-    mat-card{
-        margin: 25px;
+mat-card{
+    margin: 25px;
     border: 1px solid black;
     border-radius: 20px;
-        background-color: rgb(236, 236, 236);
+    background-color: rgb(236, 236, 236);
+    .titre{
+        text-align: left;
+        left: 0;
+        margin-left: 0;
+        padding-left: 0;
     }
+}

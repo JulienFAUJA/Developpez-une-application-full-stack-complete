@@ -1,15 +1,39 @@
-.sub_header{
-    .create_btn{
-        float: left;
-        margin-left: 5%;
+    .sub_header{
+        background-color: red;
+        margin-bottom:0;
+        .create_btn{
+            float: left;
+            margin-left: 5%;
+        }
+        .trier_par {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            float: right;
+            margin-right: 5%;
+         }
     }
-    .trier_par {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        float: right;
-        margin-right: 5%;
-     }
-}
+
+    .feed{
+        padding: 5%;
+        clear: both;
+        margin-top: 15%;
+        height:max-content;
+        background-color: blue;
+        padding: 0;
+        app-article{
+            margin: 0;
+            width: 48%;
+            &:nth-child(even){
+                float: left;
+            }
+            &:nth-child(odd){
+                float: right;
+            }
+        }
+    
+    }
+
+
 
 
