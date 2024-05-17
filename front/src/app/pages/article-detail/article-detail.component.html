@@ -1,1 +1,32 @@
-<p>article-detail works!</p>
+<section class="article-container">
+    <mat-card>
+        <mat-card-title>
+            {{ article.titre}}
+        </mat-card-title>
+           
+       
+        <mat-card-content>
+            <span class="second_line">
+                <span class="article_date">{{article.createdAt | date}}</span>
+                <span class="article_auteur">{{article.auteur}}</span>
+                <span class="article_theme">{{article.theme.theme}}</span>
+            </span>
+            
+            {{ article.contenu }}
+        </mat-card-content>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <h3 class="comment_title_section">Commentaires</h3>
+
+    <section class="feed">
+        <app-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire"></app-commentaire>
+    </section>
+        <div class="comment_form">
+            <textarea placeholder="Ecrivez votre commentaire..." class="rounded-textarea"></textarea>
+            <a class="send">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="send"></mat-icon>
+            </a>
+        </div>
+
+
+</section>

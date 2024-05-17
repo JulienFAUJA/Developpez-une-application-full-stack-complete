@@ -15,6 +15,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { RegisterComponent } from '../pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from '../pages/user/user.component';
+import { CommentaireComponent } from './components/commentaire/commentaire.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserComponent } from '../pages/user/user.component';
     ArticlesListComponent, 
     ThemesListComponent, 
     ArticleDetailComponent,
-    UserComponent
+    UserComponent,
+    CommentaireComponent
   ],
   imports: [
     CommonModule, 
