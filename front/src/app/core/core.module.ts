@@ -18,6 +18,7 @@ import { UserComponent } from '../pages/user/user.component';
 import { CommentaireComponent } from './components/commentaire/commentaire.component';
 import { BackComponent } from './components/back/back.component';
 import { HeaderAnonymousComponent } from './components/header-anonymous/header-anonymous.component';
+import { ArticleCreateComponent } from '../pages/article-create/article-create.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HeaderAnonymousComponent } from './components/header-anonymous/header-a
     ArticlesListComponent, 
     ThemesListComponent, 
     ArticleDetailComponent,
+    ArticleCreateComponent,
     UserComponent,
     CommentaireComponent,
     BackComponent,
@@ -53,6 +55,7 @@ import { HeaderAnonymousComponent } from './components/header-anonymous/header-a
     ArticlesListComponent, 
     ThemesListComponent, 
     ArticleDetailComponent,
+    ArticleCreateComponent,
     MaterialModule,
     ReactiveFormsModule
   ],

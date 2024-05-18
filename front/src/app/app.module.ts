@@ -10,7 +10,7 @@ import { ArticleCreateComponent } from './pages/article-create/article-create.co
 
 
 @NgModule({
-  declarations: [AppComponent, ArticleCreateComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

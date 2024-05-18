@@ -7,17 +7,16 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  screen_orientation!:string;
-  menuOpen:boolean = false;
+  screen_orientation!: string;
+  menuOpen: boolean = false;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.screen_orientation=window.screen.orientation.type;
-    console.log(this.screen_orientation);window.addEventListener('orientationchange', this.updateOrientation);
-    this.updateOrientation();  // Appel initial pour définir l'orientation
+    this.screen_orientation = window.screen.orientation.type;
+    console.log(this.screen_orientation);
+    window.addEventListener('orientationchange', this.updateOrientation);
+    this.updateOrientation(); // Appel initial pour définir l'orientation
   }
 
   ngOnDestroy(): void {
@@ -27,14 +26,9 @@ export class HeaderComponent implements OnInit {
   updateOrientation = (): void => {
     this.screen_orientation = window.screen.orientation.type;
     console.log('Orientation changed to:', this.screen_orientation);
-  }
+  };
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
-  }
-
-  back():void{
-    alert("retour...");
-    
   }
 }

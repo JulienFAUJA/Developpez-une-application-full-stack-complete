@@ -13,7 +13,7 @@ export class BackComponent implements OnInit {
   }
 
   back(): void{
-    
+    window.history.back();
   }
 
 }
