@@ -1,0 +1,20 @@
+<div class="header-container" *ngIf="screen_orientation==='landscape-primary'; else mobileView">
+<div class="header-sub-container" >
+    <a class="user_icon" routerLink="" routerLinkActive="active-item">
+        <img src="./assets/images/logo_p6_mini.png" alt="MDD Logo" class="logo ">
+    </a>
+     
+</div>
+  <app-back></app-back>
+  </div>
+
+  <ng-template #mobileView>
+    <!-- Contenu pour les écrans non-paysage -->
+    <app-back></app-back>
+    <div class="center">
+        <img src="./assets/images/logo_p6.png" alt="logo" />
+        
+      </div>
+    
+</ng-template>
+

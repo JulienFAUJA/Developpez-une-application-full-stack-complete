@@ -23,11 +23,6 @@
     </ng-template>
   </div>
 
-
-
-  <a class="back" (click)="back()">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="west"></mat-icon>
-  </a>
   <div class="nav_overlay_container" *ngIf="menuOpen===true">
     <div class="blur_screen_div">
     <img/>
@@ -42,4 +37,7 @@
         </ul>
     </div>
 </div>
+
+  <app-back></app-back>
+  
 

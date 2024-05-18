@@ -16,6 +16,8 @@ import { RegisterComponent } from '../pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from '../pages/user/user.component';
 import { CommentaireComponent } from './components/commentaire/commentaire.component';
+import { BackComponent } from './components/back/back.component';
+import { HeaderAnonymousComponent } from './components/header-anonymous/header-anonymous.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { CommentaireComponent } from './components/commentaire/commentaire.compo
     ThemesListComponent, 
     ArticleDetailComponent,
     UserComponent,
-    CommentaireComponent
+    CommentaireComponent,
+    BackComponent,
+    HeaderAnonymousComponent
   ],
   imports: [
     CommonModule, 
