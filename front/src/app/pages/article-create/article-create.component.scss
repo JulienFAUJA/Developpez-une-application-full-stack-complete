@@ -1,0 +1,72 @@
+@import '../../../styles/styles';
+
+
+.article_form_container{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 2px;
+    min-width: 500px;
+    width: 100%;
+
+    form{
+        min-width: 450px;
+        h3{
+            font-size:x-large;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 55px;
+        }
+        .form-group-max {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight:normal;
+            }
+            
+            input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            
+            
+            
+            
+            
+            .rounded-textarea {
+                width: 100%; /* Ajustez la largeur selon vos besoins */
+                height: 250px; /* Ajustez la hauteur selon vos besoins */
+                padding: 10px; /* Espace intérieur pour le texte */
+                border-radius: 15px; /* Rayon de l'arrondi des angles */
+                border: 1px solid #ccc; /* Couleur de la bordure, ajustez selon vos besoins */
+                resize: none; /* Désactive la possibilité de redimensionner le textarea */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre portée optionnelle pour un effet subtil */
+                font-size: 16px; /* Taille de la police, ajustez selon vos besoins */
+                font-family: Arial, sans-serif; /* Police de caractères */
+            }
+        }
+        
+        button {
+            padding: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            min-width: 100% !important;
+            &.purple_btn {
+                
+                background-color: $primary_color;
+                color: white;
+                &:hover {
+                    background-color: $primary_color_darken; // A darker shade when hovering
+                }
+            }
+        }
+    }
+}
