@@ -1,10 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+$primary_color:#7763C5;
+$primary_color_darken:#6653a5;
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.form_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-group {
+  width: 100%;
+  max-width: 250px; // Set a max-width for larger screens
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight:normal;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
 
 button {
     padding: 10px 0;
@@ -16,10 +42,31 @@ button {
     max-width: 250px; // Set a max-width for button as well
     &.purple_btn {
         
-        background-color: #7763C5;
+        background-color: $primary_color;
         color: white;
         &:hover {
-        background-color: #6653a5; // A darker shade when hovering
+        background-color: $primary_color_darken; // A darker shade when hovering
         }
   }
+}
+
+.feed{
+  height:max-content;
+  padding: 0;
+  app-theme,app-article{
+      margin: 0;
+      width: 48%;
+      &:nth-child(even){
+          float: left;
+      }
+      &:nth-child(odd){
+          float: right;
+      }
+  }
+
+}
+
+.feed_articles{
+  clear: both;
+
 }

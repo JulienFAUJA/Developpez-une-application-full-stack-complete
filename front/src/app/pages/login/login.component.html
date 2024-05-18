@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="form_container login-container">
     
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h3>Connexion</h3>
@@ -10,6 +10,6 @@
         <label for="password">Mot de passe</label>
         <input formControlName="password" type="password" id="password">
       </div>
-      <button type="submit">Se connecter</button>
+      <button class="purple_btn" type="submit">Se connecter</button>
     </form>
   </div>
