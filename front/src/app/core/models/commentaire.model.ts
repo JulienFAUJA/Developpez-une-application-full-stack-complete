@@ -5,6 +5,7 @@ export class Commentaire {
   constructor(
     public auteur: User,
     public contenu: string,
-    public article?: Article
+    public id?: number,
+    public article_id?: number
   ) {}
 }

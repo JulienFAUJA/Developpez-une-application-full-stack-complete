@@ -1,4 +1,7 @@
+@import '../../../../styles/styles';
+
 .header-container {
+    z-index: 1;
     display: flex; /* Utilisez flex au lieu de inline-flexbox */
     justify-content: space-between; /* Sépare les éléments entre les deux extrémités */
     align-items: center; /* Centre les éléments verticalement */
@@ -30,9 +33,95 @@
     text-decoration: none;
     color: black;
  }
-
+ .menu-icon{
+    float: right;
+    z-index: 10000000;
+ }
+ #burger_menu_btn{
+    float: right;
+    z-index: 10000000;
+ }
 
 }
+.nav_overlay_container {
+    position: fixed; /* Utilisez fixed plutôt que absolute pour couvrir tout l'écran */
+    top: 10%;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    display: flex; /* Flexbox pour aligner les enfants côte à côte */
+    z-index: 2000; /* Assurez-vous que le z-index est suffisamment élevé pour être au-dessus d'autres contenus */
+}
+
+.blur_screen_div {
+    flex: 0 0 20%; /* Prend exactement 20% de la largeur */
+    background-color: rgba(255, 255, 255, 0.4); /* Couleur avec opacité */
+    backdrop-filter: blur(2px); /* Appliquez l'effet de flou */
+}
+
+.nav_overlay {
+    flex: 0 0 80%; /* Prend exactement 80% de la largeur */
+    background-color:white; /* Couleur de fond */
+    top: 0;
+    height: 100%;
+    z-index: 2100; /* z-index plus élevé pour éviter d'être sous le blur_div */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer les éléments verticalement */
+}
+
+.header_nav_ul_mobile {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    padding: 0;
+    list-style-type: none; /* Enlève les puces des listes */
+    width: 100%; /* Utilise toute la largeur disponible */
+    height: 100%;
+    text-align: center; /* Centre le texte des liens */
+    margin-right: 20px;
+    margin-bottom: 50px;
+    :last-child{
+        margin-top: 100%;
+        padding: 0;
+        max-height:96px;
+        display: flex;
+        align-items:flex-end;
+        flex-direction:column-reverse;
+       
+       }
+   
+}
+
+/*
+.nav_overlay_container{
+    position: absolute;
+    display: block;
+    background-color: rgb(171, 171, 4);
+    width: 100%;
+    height: 100%;
+    z-index: -200;
+    .blur_screen_div{
+        height: 100%;
+        width:20%;
+        background-color: rgb(0, 4, 255);
+        opacity: 0.8;
+        z-index: -50000;
+    }
+    .nav_overlay{
+        top: 0;
+        background-color: rgb(255, 0, 0);
+        width: 80%;
+        height: 100%;
+        z-index: 1000;
+        .header_nav_ul_mobile{
+            list-style-type: none;
+        }
+    }
+        
+    
+
+ }*/
 
 .mat-icon{
     -webkit-user-select: none;

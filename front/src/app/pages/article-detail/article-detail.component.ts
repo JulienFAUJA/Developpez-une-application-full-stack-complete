@@ -27,19 +27,19 @@ export class ArticleDetailComponent implements OnInit {
     };
     this.commentaires=[
       {
-        article: undefined,
+        article_id: undefined,
         auteur: this.auteur,
         contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
         
       },
       {
-        article: undefined,
+        article_id: undefined,
         auteur: this.auteur,
         contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
         
       },
       {
-        article: undefined,
+        article_id: undefined,
         auteur: this.auteur,
         contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
         

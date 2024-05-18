@@ -6,7 +6,8 @@
   flex-direction: column;
 }
 .buttons_container{
-  width: 30%;
+  width: 50%;
+  display: inline;
   button{
     &:first{
       float: left;

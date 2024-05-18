@@ -1,6 +1,7 @@
-import { Theme } from './theme.model';
-import { User } from './user.model';
+
 
 export class Abonnement {
-  constructor(public theme: Theme, public abonne: User) {}
+  constructor(
+    public theme_id: number, 
+    public user_abonne_id: number) {}
 }

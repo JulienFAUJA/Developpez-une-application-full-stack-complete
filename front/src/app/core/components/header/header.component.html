@@ -2,7 +2,7 @@
     <a class="user_icon" routerLink="" routerLinkActive="active-item">
         <img src="./assets/images/logo_p6_mini.png" alt="MDD Logo" class="logo ">
     </a>
-     <ul class="header_nav_ul header_item">
+     <ul class="header_nav_ul header_item" *ngIf="screen_orientation==='landscape-primary'; else mobileView">
         <li class="nav_item_li header_item"><a routerLink="/articles" routerLinkActive="active-item">Articles</a></li>
         <li class="nav_item_li header_item"><a routerLink="/themes" routerLinkActive="active-item">Thèmes</a></li>
         <li class="nav_item_li header_item">
@@ -11,10 +11,35 @@
             </a>
         </li>
      </ul>
-     
+     <ng-template #mobileView>
+        <!-- Contenu pour les écrans non-paysage -->
+        <div>
+
+            <a id="burger_menu_btn" class="menu-icon" (click)="toggleMenu()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu"></mat-icon>
+            </a>
+        </div>
+        
+    </ng-template>
   </div>
+
+
+
   <a class="back" (click)="back()">
     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="west"></mat-icon>
   </a>
-
+  <div class="nav_overlay_container" *ngIf="menuOpen===true">
+    <div class="blur_screen_div">
+    <img/>
+    </div>
+    <div class="nav_overlay">
+        <ul class="header_nav_ul_mobile" >
+            <li class=""><a routerLink="/articles" routerLinkActive="active-item">Articles</a></li>
+            <li class=""><a routerLink="/themes" routerLinkActive="active-item">Thèmes</a></li>
+            <li><a class="user_icon_mobile" routerLink="/profile" routerLinkActive="active-item">
+                <img src="./assets/images/icon_user_full.png" alt="Ellipse" class="user_icon_img user_icon">
+            </a></li>
+        </ul>
+    </div>
+</div>
 
