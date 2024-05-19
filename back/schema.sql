@@ -1,6 +1,7 @@
 DROP DATABASE `mdd`;
 CREATE DATABASE `mdd`;
 USE `mdd`;
+
 CREATE TABLE `USERS` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255),
@@ -24,6 +25,13 @@ CREATE TABLE `THEMES` (
   `description` varchar(2000)
 );
 
+CREATE TABLE `COMMENTAIRES` (
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
+  `contenu` varchar(2000),
+  `article_id` integer NOT NULL,
+  `user_id` integer NOT NULL
+);
+
 CREATE TABLE `ABONNEMENTS` (
   `user_id` integer NOT NULL,
   `theme_id` integer NOT NULL
@@ -34,8 +42,12 @@ CREATE UNIQUE INDEX `USERS_index` ON `USERS` (`email`);
 ALTER TABLE `ARTICLES` ADD FOREIGN KEY (`auteur_id`) REFERENCES `USERS` (`id`);
 ALTER TABLE `ARTICLES` ADD FOREIGN KEY (`theme_id`) REFERENCES `THEMES` (`id`);
 
+ALTER TABLE `COMMENTAIRES` ADD FOREIGN KEY (`article_id`) REFERENCES `ARTICLES` (`id`);
+ALTER TABLE `COMMENTAIRES` ADD FOREIGN KEY (`user_id`) REFERENCES `USERS` (`id`);
+
 ALTER TABLE `ABONNEMENTS` ADD FOREIGN KEY (`user_id`) REFERENCES `USERS` (`id`);
 ALTER TABLE `ABONNEMENTS` ADD FOREIGN KEY (`theme_id`) REFERENCES `THEMES` (`id`);
+
 
 
 INSERT INTO USERS (email, name, password, created_at) VALUES
@@ -53,7 +65,24 @@ INSERT INTO THEMES (theme, description) VALUES
   ('CSS', "Langage web utilisé pour le style des pages web...");
 
 INSERT INTO ARTICLES (titre, contenu, auteur_id, theme_id, created_at) VALUES
-  ('Maitriser Javascript', 'Voici dans cet article des astuces pour maitriser Javascript', 1, 2, now());
+  ('Découverte de Rust', 'Rust est un langage de programmation système axé sur la sécurité, la vitesse et la concurrence.', 4, 3, now()),
+  ('Les bases de Python', 'Python est un langage de programmation interprété, interactif et orienté objet. Il est parfait pour les débutants.', 2, 1, now()),
+  ('CSS pour débutants', 'Cet article présente les bases de CSS pour ceux qui débutent dans la conception web.', 5, 5, now()),
+  ('Optimisation C++', 'Apprenez à optimiser vos programmes C++ pour une performance maximale.', 3, 4, now());
+
+
+-- Assumant que la table COMMENTAIRES a déjà les champs article_id et user_id
+INSERT INTO COMMENTAIRES (contenu, user_id, article_id) VALUES
+  ('Article très informatif, merci pour le partage!', 2, 1),
+  ('Je n\'ai pas compris la partie sur les closures en Rust, pouvez-vous élaborer?', 1, 1),
+  ('Merci pour cet article! Python est vraiment un langage puissant et accessible.', 3, 2),
+  ('Les sélecteurs CSS peuvent être déroutants au début, mais cet article aide beaucoup.', 5, 3),
+  ('C++ est intimidant, mais cet article rend les choses un peu plus claires.', 2, 4),
+  ('Rust semble être l\'avenir pour les systèmes sécurisés, très bon article!', 4, 1),
+  ('Cet article manque quelques exemples de code en Python.', 1, 3),
+  ('Excellent travail! Les optimisations C++ sont cruciales pour mon travail quotidien.', 3, 4);
+
+
 
 
 

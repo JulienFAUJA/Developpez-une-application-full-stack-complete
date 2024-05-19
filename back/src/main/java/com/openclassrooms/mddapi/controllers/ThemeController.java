@@ -1,7 +1,9 @@
 package com.openclassrooms.mddapi.controllers;
 
 
-import com.openclassrooms.mddapi.services.Interfaces.IArticleService;
+import com.openclassrooms.mddapi.dto.ThemeRequestDTO;
+import com.openclassrooms.mddapi.dto.ThemeResponseDTO;
+import com.openclassrooms.mddapi.services.Interfaces.IThemeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,17 +20,17 @@ public class ThemeController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> SubscribeTheme(@Valid @RequestBody ArticleRequestDTO articleRequestDTO) {
-        ArticleResponseDTO articleResponseDTO = themeService.subscribeTheme(articleRequestDTO);
-        if (articleResponseDTO.getMessage() == "Bad request: ") {
+    public ResponseEntity<?> SubscribeTheme(@Valid @RequestBody ThemeRequestDTO themeRequestDTO) {
+        ThemeResponseDTO themeResponseDTO = themeService.subscribeTheme(themeRequestDTO);
+        if (themeResponseDTO == null) {
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(articleResponseDTO);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(themeResponseDTO);
         }
-        else if (articleResponseDTO.getMessage() == "Unauthorized: ") {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(articleResponseDTO);
+        else if (themeResponseDTO==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(themeResponseDTO);
         }
         else {
-            return ResponseEntity.ok(articleResponseDTO);
+            return ResponseEntity.ok(themeResponseDTO);
         }
 
     }

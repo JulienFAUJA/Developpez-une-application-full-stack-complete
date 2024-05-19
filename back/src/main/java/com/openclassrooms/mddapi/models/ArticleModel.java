@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "article")
+@Table(name = "ARTICLES")
 public class ArticleModel {
 
 

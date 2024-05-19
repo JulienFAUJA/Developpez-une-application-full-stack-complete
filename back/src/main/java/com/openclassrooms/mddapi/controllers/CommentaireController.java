@@ -1,5 +1,8 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.dto.CommentaireRequestDTO;
+import com.openclassrooms.mddapi.dto.CommentaireResponseDTO;
+import com.openclassrooms.mddapi.services.Interfaces.ICommentaireService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +21,12 @@ public class CommentaireController {
     @ResponseBody
     public ResponseEntity<?> postCommentaire(@Valid @RequestBody CommentaireRequestDTO commentaireRequestDTO) {
         CommentaireResponseDTO commentaireResponseDTO = commentaireService.postCommentaire(commentaireRequestDTO);
-        if (commentaireResponseDTO.getMessage() == "Bad request: ") {
+        //if (commentaireResponseDTO.getMessage() == "Bad request: ") {
+        if (commentaireResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commentaireResponseDTO);
         }
-        else if (commentaireResponseDTO.getMessage() == "Unauthorized: ") {
+        //else if (commentaireResponseDTO.getMessage() == "Unauthorized: ") {
+        else if (commentaireResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(commentaireResponseDTO);
         }
         else {
@@ -32,7 +37,7 @@ public class CommentaireController {
 
     @GetMapping("{id}")
     public ResponseEntity<?> getCommentairesById(@PathVariable("id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(commentaireService.getThemeById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(commentaireService.getCommentaireById(id));
     }
 
 }
