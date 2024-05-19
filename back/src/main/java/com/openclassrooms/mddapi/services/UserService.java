@@ -1,5 +1,4 @@
 package com.openclassrooms.mddapi.services;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,45 +18,45 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import com.openclassroom.dto.UserDTO;
-import com.openclassroom.dto.UserLoginDTO;
-import com.openclassroom.dto.UserRegisterDTO;
-import com.openclassroom.models.UserModel;
-import com.openclassroom.repositories.UserRepository;
-import com.openclassroom.services.Interfaces.IUserService;
+import com.openclassrooms.mddapi.dto.UserDTO;
+import com.openclassrooms.mddapi.dto.UserLoginDTO;
+import com.openclassrooms.mddapi.dto.UserRegisterDTO;
+import com.openclassrooms.mddapi.models.UserModel;
+import com.openclassrooms.mddapi.repositories.UserRepository;
+import com.openclassrooms.mddapi.services.Interfaces.IUserService;
 
 @Service
 public class UserService implements UserDetailsService, IUserService {
 
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-    
-    
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username)
-                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
-    }
 
-    
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return  userRepository.findByEmail(username)
+				.orElseThrow(()-> new UsernameNotFoundException("User not found"));
+	}
+
+
 
 	private List<GrantedAuthority> getGrantedAuthorities(String role) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
 		return authorities;
 	}
-   
-	
+
+
 	public UserDTO getUserById(Integer id){
 		Optional<UserModel> user = this.userRepository.findById(id);
 		return modelMapper.map(user.orElseThrow(), UserDTO.class);
 	}
-	
 
-	
+
+
 
 }

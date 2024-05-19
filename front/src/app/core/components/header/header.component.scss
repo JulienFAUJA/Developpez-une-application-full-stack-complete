@@ -1,12 +1,14 @@
 @import '../../../../styles/styles';
 
 .header-container {
+    position: sticky;
+    background-color: white;
     z-index: 1;
     display: flex; /* Utilisez flex au lieu de inline-flexbox */
     justify-content: space-between; /* Sépare les éléments entre les deux extrémités */
     align-items: center; /* Centre les éléments verticalement */
     top: 0; /* Assurez-vous que l'en-tête reste en haut lors du défilement */
-    width: 100%; 
+    width: auto; 
     border: 1px solid black;
     font-size: large;
 .logo {
@@ -88,7 +90,10 @@
         display: flex;
         align-items:flex-end;
         flex-direction:column-reverse;
-       
+       }
+       *{
+        color: black;
+        font-size: larger;
        }
    
 }

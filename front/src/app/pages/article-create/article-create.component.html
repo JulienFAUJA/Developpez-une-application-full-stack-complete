@@ -1,15 +1,15 @@
 <app-header></app-header>
-<div class="article_form_container">
+<div class="form_container article_form_container">
     
     <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
       <h3>Créer un nouvel article</h3>
-      <div class="form-group-max">
+      <div class="form-group form-group-max">
         <input formControlName="theme_input" placeholder="Sélectionner un thème" type="text" id="theme_input">
       </div>
-      <div class="form-group-max">
+      <div class="form-group form-group-max">
         <input formControlName="titre_input" placeholder="Titre de l’article" type="text" id="titre_input">
       </div>
-      <div class="form-group-max">
+      <div class="form-group form-group-max">
         <textarea formControlName="article_content_textarea" placeholder="Contenu de l'article" id="article_content_textarea" class="rounded-textarea"></textarea>
       </div>
       <button class="purple_btn" type="submit">Créer</button>

@@ -25,6 +25,7 @@ export class SessionService {
   public logOut(): void {
     this.sessionInformation = undefined;
     this.isLogged = false;
+    localStorage.clear();
     this.next();
   }
 

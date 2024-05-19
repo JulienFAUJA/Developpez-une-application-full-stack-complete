@@ -19,7 +19,7 @@ const routes: Routes = [
   
   { path: 'article/detail/:id', component: ArticleDetailComponent },
   { path: 'article/create', component: ArticleCreateComponent },
-  { path: 'articles', component: ArticlesListComponent },
+  { path: 'article/all', component: ArticlesListComponent },
   { path: 'themes', component: ThemesListComponent },
   { path: 'profile', component: UserComponent },
 ];

@@ -64,7 +64,8 @@ button {
 }
 
 .feed{
-  height:max-content;
+  clear: both;
+  
   padding: 0;
   app-theme,app-article{
       margin: 0;
@@ -75,6 +76,18 @@ button {
       &:nth-child(odd){
           float: right;
       }
+  }
+
+  // Media query pour les appareils en orientation portrait
+  @media (orientation: portrait) {
+    display: block;
+    
+    app-theme,app-article {
+      clear: both;
+      width: 100%;
+      display: block; // Chaque élément prend sa propre ligne
+     
+    }
   }
 }
 

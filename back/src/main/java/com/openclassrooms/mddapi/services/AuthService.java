@@ -12,13 +12,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.openclassroom.dto.TokenDTO;
-import com.openclassroom.dto.UserLoggedDTO;
-import com.openclassroom.dto.UserLoginDTO;
-import com.openclassroom.dto.UserRegisterDTO;
-import com.openclassroom.models.UserModel;
-import com.openclassroom.repositories.UserRepository;
-import com.openclassroom.services.Interfaces.IAuthService;
+import com.openclassrooms.mddapi.dto.TokenDTO;
+import com.openclassrooms.mddapi.dto.UserLoggedDTO;
+import com.openclassrooms.mddapi.dto.UserLoginDTO;
+import com.openclassrooms.mddapi.dto.UserRegisterDTO;
+import com.openclassrooms.mddapi.models.UserModel;
+import com.openclassrooms.mddapi.repositories.UserRepository;
+import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
 
 @Service
 public class AuthService implements IAuthService{

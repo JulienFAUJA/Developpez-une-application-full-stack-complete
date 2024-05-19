@@ -1,5 +1,5 @@
 package com.openclassrooms.mddapi.services.Interfaces;
-import com.openclassroom.dto.UserDTO;
+import com.openclassrooms.mddapi.dto.UserDTO;
 
 public interface IUserService {
 	

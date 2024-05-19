@@ -2,7 +2,7 @@ package com.openclassrooms.mddapi.dto;
 
 import java.sql.Timestamp;
 
-import com.openclassroom.models.UserModel;
+import com.openclassrooms.mddapi.models.UserModel;
 
 
 public class UserDTO {

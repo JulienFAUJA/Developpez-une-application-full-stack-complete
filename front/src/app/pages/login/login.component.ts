@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/core/interfaces/loginRequest.interface';
 import { SessionInformation } from 'src/app/core/interfaces/sessionInformation.interface';
@@ -13,17 +13,13 @@ import { SessionService } from 'src/app/core/services/session.service';
 })
 export class LoginComponent {
 
-  /*
-  public form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.min(3)]],
-  });
-*/
+ 
 public hide = true;
 public onError = false;
-  loginForm = new FormGroup({
-    emailOrUsername: new FormControl(''),
-    password: new FormControl(''),
+  loginForm = this.fb.group({
+      emailOrUsername: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.min(3)]],
+   
   });
 
   constructor(private authService: AuthService,
@@ -39,7 +35,7 @@ public onError = false;
   this.authService.login(loginRequest).subscribe({
     next: (response: SessionInformation) => {
       this.sessionService.logIn(response);
-      this.router.navigate(['/sessions']);
+      this.router.navigate(['/articles']);
     },
     error: (error) => (this.onError = true),
   });

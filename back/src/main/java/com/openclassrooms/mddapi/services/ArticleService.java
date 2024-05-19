@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,19 @@ public class ArticleService implements IArticleService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
-	
+
+
+
+	public ArticleResponseDTO getArticleById(Integer id) {
+		return null;
+	}
     
 
-    public ArticleResponseDTO postMessage(ArticleRequestDTO articleRequestDTO) {
-    	if (articleRequestDTO.getContenu() == null || articleRequestDTO.getAuteur_id() == null) {
+    public ArticleResponseDTO postArticle(ArticleRequestDTO articleRequestDTO) {
+    	if (
+				articleRequestDTO.getContenu() == null ||
+				articleRequestDTO.getTheme() == null ||
+				articleRequestDTO.getTitre() == null) {
     		ArticleResponseDTO errorResponse = new ArticleResponseDTO("Bad request: ");
 	        return errorResponse;
     	}
@@ -45,7 +53,7 @@ public class ArticleService implements IArticleService {
 	    }
 		
     }
-   
-	
+
+
 
 }

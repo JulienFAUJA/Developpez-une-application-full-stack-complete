@@ -18,13 +18,55 @@ public class ArticleModel {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer theme_id;
-    private Integer auteur_id;
-    private Integer[] commentaires_id;
-    private String titre;
-    private String contenu;
-    private Timestamp created_at;
+
+	private Integer id;
+	private String titre;
+	private Integer theme_id;
+	private Integer auteur_id;
+	private String contenu;
+	private Integer[] commentaires;
+	public Timestamp createdAt;
+
+	public Integer getTheme_id() {
+		return theme_id;
+	}
+
+	public void setTheme_id(Integer theme_id) {
+		this.theme_id = theme_id;
+	}
+
+
+	public Integer[] getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Integer[] commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
+	}
+
+	public Integer getAuteur_id() {
+		return auteur_id;
+	}
+
+	public void setAuteur_id(Integer auteur_id) {
+		this.auteur_id = auteur_id;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
 
     public ArticleModel() {
     }
@@ -39,11 +81,11 @@ public class ArticleModel {
 
 
 	public Timestamp getCreated_at() {
-		return created_at;
+		return createdAt;
 	}
 
 	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
+		this.createdAt = created_at;
 	}
 
 

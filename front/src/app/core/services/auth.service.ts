@@ -12,6 +12,7 @@ export class AuthService {
 
   private pathService = 'api/auth';
 
+
   constructor(private httpClient: HttpClient) { }
 
   public register(registerRequest: RegisterRequest): Observable<void> {

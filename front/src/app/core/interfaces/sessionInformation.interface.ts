@@ -6,5 +6,4 @@ export interface SessionInformation {
   username: string;
   firstName: string;
   lastName: string;
-  admin: boolean;
 }
