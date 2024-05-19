@@ -19,11 +19,9 @@ public class LocationHelpers {
 	public final static String LOGIN_URI = LocationHelpers.AUTH_URI+"/login";
 	public final static String ME_URI = LocationHelpers.AUTH_URI+"/me";
 	public final static String USER_URI = LocationHelpers.ROOT_URI+"/user";
-	public final static String RENTALS_URI = LocationHelpers.ROOT_URI+"/rentals";
-	public final static String MESSAGES_URI = LocationHelpers.ROOT_URI+"/messages";
+	public final static String ARTICLES_URI = LocationHelpers.ROOT_URI+"/article/**";
+	public final static String THEMES_URI = LocationHelpers.ROOT_URI+"/themes";
 	public final static String IMAGES_URI_RECURSIVE = LocationHelpers.STATIC_DIR+"/**";
-	public final static String SWAGGER_UI_URI = "/swagger-ui/**";
-	public final static String SWAGGER_API_URI = "/v3/api-docs/**";
 	public final static String BEARER_AUTH = "bearerAuth";
 	
 	@Value("${app.upload.dir}")

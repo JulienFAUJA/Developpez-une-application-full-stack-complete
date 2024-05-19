@@ -22,10 +22,11 @@ public class ThemeController {
     @ResponseBody
     public ResponseEntity<?> SubscribeTheme(@Valid @RequestBody ThemeRequestDTO themeRequestDTO) {
         ThemeResponseDTO themeResponseDTO = themeService.subscribeTheme(themeRequestDTO);
-        if (themeResponseDTO == null) {
-
+        //if (themeResponseDTO.getMessage() == "Bad request: ") {
+        if (themeResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(themeResponseDTO);
         }
+        //else if (themeResponseDTO.getMessage() == "Unauthorized: ") {
         else if (themeResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(themeResponseDTO);
         }
@@ -40,8 +41,8 @@ public class ThemeController {
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getThemeById(id));
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<?> getAllThemesByUserId(@PathVariable("id") Integer id) {
+    @GetMapping("{user_id}")
+    public ResponseEntity<?> getAllThemesByUserId(@PathVariable("user_id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemesByUserId(id));
     }
 

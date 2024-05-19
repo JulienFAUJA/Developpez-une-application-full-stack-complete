@@ -55,8 +55,7 @@ public class SpringSecurityConfig{
                 		"images/**",
                 		LocationHelpers.STATIC_URI,
                 		LocationHelpers.STATIC_URI_RECURSIVE,
-                		LocationHelpers.SWAGGER_UI_URI,
-                		LocationHelpers.SWAGGER_API_URI
+                		LocationHelpers.ARTICLES_URI
                 		).permitAll()
                 // Pour tout le reste il faut être authentifié
                 .anyRequest().authenticated())
