@@ -1,7 +1,7 @@
 package com.openclassrooms.mddapi.dto;
 
 
-import com.openclassroom.models.UserModel;
+import com.openclassrooms.mddapi.models.UserModel;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
