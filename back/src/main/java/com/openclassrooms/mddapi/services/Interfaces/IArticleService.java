@@ -9,4 +9,8 @@ public interface IArticleService {
 	ArticleResponseDTO postArticle(ArticleRequestDTO articleDTO);
 
 	ArticleResponseDTO getArticleById(Integer id);
+
+	ArticleResponseDTO[] getArticlesByThemeId(Integer id);
+
+	ArticleResponseDTO[] getAllArticlesForUser();
 }

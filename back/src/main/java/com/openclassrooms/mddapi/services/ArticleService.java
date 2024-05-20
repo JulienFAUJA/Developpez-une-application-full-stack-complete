@@ -25,11 +25,32 @@ public class ArticleService implements IArticleService {
 
 
 	public ArticleResponseDTO getArticleById(Integer id) {
+
+		// Récupérer les commentaires de cet article puisque c'est pour article/détail
 		return null;
 	}
-    
 
-    public ArticleResponseDTO postArticle(ArticleRequestDTO articleRequestDTO) {
+	@Override
+	public ArticleResponseDTO[] getArticlesByThemeId(Integer id) {
+		return null;
+	}
+
+	@Override
+	public ArticleResponseDTO[] getAllArticlesForUser() {
+		// Récup l'id de l'utilisateur connecté
+
+		// Récup tous les theme_id des abonnements de l'utilisateur connecté
+
+		// Récup tous les articles qui ont ces theme_id
+
+
+
+
+		return new ArticleResponseDTO[0];
+	}
+
+
+	public ArticleResponseDTO postArticle(ArticleRequestDTO articleRequestDTO) {
     	if (
 				articleRequestDTO.getContenu() == null ||
 				articleRequestDTO.getTheme() == null ||

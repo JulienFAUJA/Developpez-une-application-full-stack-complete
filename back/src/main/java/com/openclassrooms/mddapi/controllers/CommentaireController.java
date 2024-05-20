@@ -36,8 +36,8 @@ public class CommentaireController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getCommentairesById(@PathVariable("id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(commentaireService.getCommentaireById(id));
+    public ResponseEntity<?> getCommentairesByArticleId(@PathVariable("id") Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(commentaireService.getCommentairesByArticleId(id));
     }
 
 }

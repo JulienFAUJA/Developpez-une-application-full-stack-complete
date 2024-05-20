@@ -11,7 +11,7 @@ public class CommentaireService implements ICommentaireService {
 
 
     @Override
-    public CommentaireResponseDTO getCommentaireById(Integer id) {
+    public CommentaireResponseDTO getCommentairesByArticleId(Integer id) {
         return null;
     }
 

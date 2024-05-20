@@ -36,6 +36,11 @@ public class ArticleController {
 		 
 	}
 
+	@GetMapping
+	public ResponseEntity<?> getAllArticlesForUser() {
+		return ResponseEntity.status(HttpStatus.OK).body(articleService.getAllArticlesForUser());
+	}
+
 	@GetMapping("{id}")
 	public ResponseEntity<?> getArticleById(@PathVariable("id") Integer id) {
 		return ResponseEntity.status(HttpStatus.OK).body(articleService.getArticleById(id));

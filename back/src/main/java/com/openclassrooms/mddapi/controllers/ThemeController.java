@@ -36,14 +36,32 @@ public class ThemeController {
 
     }
 
+    @DeleteMapping
+    @ResponseBody
+    public ResponseEntity<?> UnsubscribeTheme(@Valid @RequestBody ThemeRequestDTO themeRequestDTO) {
+        ThemeResponseDTO themeResponseDTO = themeService.subscribeTheme(themeRequestDTO);
+        //if (themeResponseDTO.getMessage() == "Bad request: ") {
+        if (themeResponseDTO==null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(themeResponseDTO);
+        }
+        //else if (themeResponseDTO.getMessage() == "Unauthorized: ") {
+        else if (themeResponseDTO==null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(themeResponseDTO);
+        }
+        else {
+            return ResponseEntity.ok(themeResponseDTO);
+        }
+
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<?> getThemeById(@PathVariable("id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getThemeById(id));
     }
 
-    @GetMapping("{user_id}")
-    public ResponseEntity<?> getAllThemesByUserId(@PathVariable("user_id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemesByUserId(id));
+    @GetMapping
+    public ResponseEntity<?> getAllThemesForUser() {
+        return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemesForUser());
     }
 
 }

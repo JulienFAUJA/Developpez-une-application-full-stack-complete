@@ -13,12 +13,17 @@ public class ThemeService implements IThemeService {
     }
 
     @Override
+    public ThemeResponseDTO unsubscribeTheme(ThemeRequestDTO themeRequestDTO) {
+        return null;
+    }
+
+    @Override
     public ThemeResponseDTO getThemeById(Integer id) {
         return null;
     }
 
     @Override
-    public ThemeResponseDTO getAllThemesByUserId(Integer id) {
+    public ThemeResponseDTO getAllThemesForUser() {
         return null;
     }
 }
