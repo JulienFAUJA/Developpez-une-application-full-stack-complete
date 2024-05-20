@@ -33,6 +33,7 @@ CREATE TABLE `COMMENTAIRES` (
 );
 
 CREATE TABLE `ABONNEMENTS` (
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
   `user_id` integer NOT NULL,
   `theme_id` integer NOT NULL
 );

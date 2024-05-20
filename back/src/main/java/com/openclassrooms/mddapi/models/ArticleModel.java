@@ -18,7 +18,6 @@ public class ArticleModel {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Integer id;
 	private String titre;
 	private Integer theme_id;
@@ -27,37 +26,12 @@ public class ArticleModel {
 	private Integer[] commentaires;
 	public Timestamp createdAt;
 
-	public Integer getTheme_id() {
-		return theme_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTheme_id(Integer theme_id) {
-		this.theme_id = theme_id;
-	}
-
-
-	public Integer[] getCommentaires() {
-		return commentaires;
-	}
-
-	public void setCommentaires(Integer[] commentaires) {
-		this.commentaires = commentaires;
-	}
-
-	public String getContenu() {
-		return contenu;
-	}
-
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
-	}
-
-	public Integer getAuteur_id() {
-		return auteur_id;
-	}
-
-	public void setAuteur_id(Integer auteur_id) {
-		this.auteur_id = auteur_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getTitre() {
@@ -68,17 +42,29 @@ public class ArticleModel {
 		this.titre = titre;
 	}
 
-    public ArticleModel() {
-    }
-
-	public Integer getId() {
-		return id;
+	public Integer getTheme_id() {
+		return theme_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTheme_id(Integer theme_id) {
+		this.theme_id = theme_id;
 	}
 
+	public Integer getAuteur_id() {
+		return auteur_id;
+	}
+
+	public void setAuteur_id(Integer auteur_id) {
+		this.auteur_id = auteur_id;
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
+	}
 
 	public Timestamp getCreated_at() {
 		return createdAt;
@@ -94,5 +80,39 @@ public class ArticleModel {
 		this.setCreated_at(now);
 	}
 
-    
+	public Integer[] getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Integer[] commentaires) {
+		this.commentaires = commentaires;
+	}
+
+    public ArticleModel() {
+    }
+
+	public ArticleModel(Integer id, String titre, Integer theme_id, Integer auteur_id, String contenu, Integer[] commentaires, Timestamp createdAt) {
+		this.id = id;
+		this.titre = titre;
+		this.theme_id = theme_id;
+		this.auteur_id = auteur_id;
+		this.contenu = contenu;
+		this.commentaires = commentaires;
+		this.createdAt = createdAt;
+	}
+
+	public ArticleModel(String titre, String contenu, Integer auteur_id, Integer theme_id) {
+		this.titre = titre;
+		this.contenu = contenu;
+		this.auteur_id = auteur_id;
+		this.theme_id = theme_id;
+	}
+
+	public ArticleModel(String titre, Integer theme_id, Integer auteur_id, String contenu, Timestamp createdAt) {
+		this.titre = titre;
+		this.theme_id = theme_id;
+		this.auteur_id = auteur_id;
+		this.contenu = contenu;
+		this.createdAt = createdAt;
+	}
 }

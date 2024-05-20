@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class UserModel implements UserDetails, Principal{
 	
 	@Id
@@ -33,8 +33,6 @@ public class UserModel implements UserDetails, Principal{
 	private String password;
 	@CreationTimestamp
 	private Timestamp  created_at;
-	@UpdateTimestamp
-	private Timestamp  updated_at;
 	
 	
 	public Integer getId() {
@@ -79,13 +77,6 @@ public class UserModel implements UserDetails, Principal{
 		this.created_at = created_at;
 	}
 
-	public Timestamp getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Timestamp updated_at) {
-		this.updated_at = updated_at;
-	}
 	
 	public UserModel() {
 		
@@ -94,7 +85,7 @@ public class UserModel implements UserDetails, Principal{
 	@Override
 	public String toString() {
 		return "UserModel [id=" + id + ", email=" + email + ", name=" + name + ", password=" + password
-				+ ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
+				+ ", created_at=" + created_at;
 	}
 
 	public UserModel(String email, String password) {
@@ -106,13 +97,12 @@ public class UserModel implements UserDetails, Principal{
 		this.name = name;
 		this.password = password;
 	}
-	public UserModel(Integer id, String email, String name, String password, Timestamp created_at, Timestamp updated_at) {
+	public UserModel(Integer id, String email, String name, String password, Timestamp created_at) {
 		this.id=id;
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		this.created_at = created_at;
-		this.updated_at = updated_at;
 	}
 
 	@Override
