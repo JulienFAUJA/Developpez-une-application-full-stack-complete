@@ -1,14 +1,14 @@
 package com.openclassrooms.mddapi.dto;
 
-public class CommentaireResponseDTO {
+public class AbonnementResponseDTO {
 
     private String message;
 
 
-    public CommentaireResponseDTO() {
+    public AbonnementResponseDTO() {
     }
 
-    public CommentaireResponseDTO(String message) {
+    public AbonnementResponseDTO(String message) {
         this.message=message;
     }
 
@@ -19,4 +19,5 @@ public class CommentaireResponseDTO {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

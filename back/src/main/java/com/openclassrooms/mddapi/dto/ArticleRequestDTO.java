@@ -17,6 +17,14 @@ public class ArticleRequestDTO {
     private Integer[] commentaires;
     public Timestamp createdAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getTheme() {
         return theme;
     }
@@ -71,6 +79,13 @@ public class ArticleRequestDTO {
         this.contenu = contenu;
     }
 
+    public ArticleRequestDTO(Integer id, String titre,String theme, String contenu) {
+        this.id = id;
+        this.titre = titre;
+        this.theme = theme;
+        this.contenu = contenu;
+    }
+
 
 
     public ArticleRequestDTO(ArticleModel article) {
@@ -81,13 +96,7 @@ public class ArticleRequestDTO {
 
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
 
 	

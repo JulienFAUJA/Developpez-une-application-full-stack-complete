@@ -8,8 +8,7 @@ public class UserLoggedDTO {
     private String email;
     private String name;
     private Timestamp created_at;
-    private Timestamp updated_at;
-    
+
     
     public Integer getId() {
 		return id;
@@ -35,13 +34,6 @@ public class UserLoggedDTO {
 		this.created_at = created_at;
 	}
 
-	public Timestamp getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Timestamp updated_at) {
-		this.updated_at = updated_at;
-	}
     
     
     public String getEmail() {
@@ -55,8 +47,7 @@ public class UserLoggedDTO {
     
 	@Override
 	public String toString() {
-		return "UserLoggedDTO [id=" + id + ", email=" + email + ", name=" + name + ", created_at=" + created_at
-				+ ", updated_at=" + updated_at + "]";
+		return "UserLoggedDTO [id=" + id + ", email=" + email + ", name=" + name + ", created_at=" + created_at+ "]";
 	}
 
 }

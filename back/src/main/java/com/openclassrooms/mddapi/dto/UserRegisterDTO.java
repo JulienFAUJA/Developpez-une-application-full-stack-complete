@@ -25,8 +25,7 @@ public class UserRegisterDTO {
     @NotBlank(message="Le mot de passe est obligatoire...")
 	private String password;
 	private Timestamp  created_at;
-	private Timestamp  updated_at;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -71,18 +70,6 @@ public class UserRegisterDTO {
 		Timestamp now = Timestamp.from(Instant.now());
 		this.setCreated_at(now);
 	}
-
-	public Timestamp getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Timestamp updated_at) {
-		this.updated_at = updated_at;
-	}
-	public void setUpdated_atNow() {
-		Timestamp now = Timestamp.from(Instant.now());
-		this.setUpdated_at(now);
-	}
 	
 	
 	public UserRegisterDTO() {
@@ -100,23 +87,21 @@ public class UserRegisterDTO {
 		this.password = password;
 		Timestamp now = Timestamp.from(Instant.now());
 		this.created_at = now;
-		this.updated_at = now;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "UserRegisterDTO [id=" + id + ", email=" + email + ", name=" + name + ", password=" + password
-				+ ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
+				+ ", created_at=" + created_at + "]";
 	}
 
-	public UserRegisterDTO(Integer id, String email, String name, String password, Timestamp created_at, Timestamp updated_at) {
+	public UserRegisterDTO(Integer id, String email, String name, String password, Timestamp created_at) {
 		this.id=id;
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		this.created_at = created_at;
-		this.updated_at = updated_at;
 	}
 	
 	public UserRegisterDTO(UserModel user) {
@@ -125,6 +110,5 @@ public class UserRegisterDTO {
 		this.name = user.getName();
 		this.password = user.getPassword();
 		this.created_at = user.getCreated_at();
-		this.updated_at = user.getUpdated_at();
     }
 }

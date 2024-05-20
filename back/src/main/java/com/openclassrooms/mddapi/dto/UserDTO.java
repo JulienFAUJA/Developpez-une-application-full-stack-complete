@@ -11,8 +11,7 @@ public class UserDTO {
 	private String email;
 	private String name;
 	private Timestamp  created_at;
-	private Timestamp  updated_at;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -47,13 +46,6 @@ public class UserDTO {
 		this.created_at = created_at;
 	}
 
-	public Timestamp getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Timestamp updated_at) {
-		this.updated_at = updated_at;
-	}
 	
 	public UserDTO() {
 	}
@@ -65,12 +57,11 @@ public class UserDTO {
 	}
 	
 	
-	public UserDTO(Integer id, String email, String name, Timestamp created_at, Timestamp updated_at) {
+	public UserDTO(Integer id, String email, String name, Timestamp created_at) {
 		this.id=id;
 		this.email = email;
 		this.name = name;
 		this.created_at = created_at;
-		this.updated_at = updated_at;
 	}
 	
 	public UserDTO(UserModel user) {
@@ -78,6 +69,5 @@ public class UserDTO {
 		this.email = user.getUsername();
 		this.name = user.getName();
 		this.created_at = user.getCreated_at();
-		this.updated_at = user.getUpdated_at();
     }
 }
