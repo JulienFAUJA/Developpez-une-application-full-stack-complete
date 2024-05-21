@@ -9,7 +9,9 @@ public class CommentaireModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String contenu;
-    private Integer article_id;
+    @Column(name = "article_id")
+    private Integer articleId;
+    @Column(name = "user_id")
     private Integer auteur_id;
 
 
@@ -29,12 +31,12 @@ public class CommentaireModel {
         this.contenu = contenu;
     }
 
-    public Integer getArticle_id() {
-        return article_id;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setArticle_id(Integer article_id) {
-        this.article_id = article_id;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public Integer getAuteur_id() {
@@ -45,21 +47,28 @@ public class CommentaireModel {
         this.auteur_id = auteur_id;
     }
 
-    public CommentaireModel(Integer id, String contenu, Integer article_id, Integer auteur_id) {
+    public CommentaireModel(){}
+
+    public CommentaireModel(Integer id, String contenu, Integer articleId, Integer auteur_id) {
         this.id = id;
         this.contenu = contenu;
-        this.article_id = article_id;
+        this.articleId = articleId;
         this.auteur_id = auteur_id;
     }
 
-    public CommentaireModel(String contenu, Integer article_id, Integer auteur_id) {
+    public CommentaireModel(String contenu, Integer articleId, Integer auteur_id) {
         this.contenu = contenu;
-        this.article_id = article_id;
+        this.articleId = articleId;
         this.auteur_id = auteur_id;
     }
 
     public CommentaireModel(String contenu, Integer auteur_id) {
         this.contenu = contenu;
         this.auteur_id = auteur_id;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentaireModel [id="+this.getId()+ ", contenu=" + this.getContenu() + ", auteur=" + this.getAuteur_id() + "]";
     }
 }

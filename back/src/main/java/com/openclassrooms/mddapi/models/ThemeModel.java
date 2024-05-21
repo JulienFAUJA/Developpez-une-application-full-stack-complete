@@ -36,6 +36,8 @@ public class ThemeModel {
         this.description = description;
     }
 
+    public ThemeModel(){}
+
     public ThemeModel(Integer id, String theme, String description) {
         this.id = id;
         this.theme = theme;

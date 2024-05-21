@@ -9,21 +9,11 @@ import java.sql.Timestamp;
 public class ArticleRequestDTO {
 
 
-    private Integer id;
+
     private String titre;
     private String theme;
-    private Integer auteur_id;
     private String contenu;
-    private Integer[] commentaires;
-    public Timestamp createdAt;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTheme() {
         return theme;
@@ -31,15 +21,6 @@ public class ArticleRequestDTO {
 
     public void setTheme(String theme) {
         this.theme = theme;
-    }
-
-
-    public Integer[] getCommentaires() {
-        return commentaires;
-    }
-
-    public void setCommentaires(Integer[] commentaires) {
-        this.commentaires = commentaires;
     }
 
     public String getContenu() {
@@ -50,13 +31,6 @@ public class ArticleRequestDTO {
         this.contenu = contenu;
     }
 
-    public Integer getAuteur_id() {
-        return auteur_id;
-    }
-
-    public void setAuteur_id(Integer auteur_id) {
-        this.auteur_id = auteur_id;
-    }
 
     public String getTitre() {
         return titre;
@@ -66,37 +40,29 @@ public class ArticleRequestDTO {
         this.titre = titre;
     }
 
-
     public ArticleRequestDTO() {
     }
 
 
-    public ArticleRequestDTO(Integer id, Integer auteur_id, String titre,String theme, String contenu) {
-        this.id = id;
-        this.auteur_id = auteur_id;
+    public ArticleRequestDTO(String titre,String theme, String contenu) {
         this.titre = titre;
         this.theme = theme;
         this.contenu = contenu;
     }
 
-    public ArticleRequestDTO(Integer id, String titre,String theme, String contenu) {
-        this.id = id;
-        this.titre = titre;
-        this.theme = theme;
-        this.contenu = contenu;
-    }
 
 
 
     public ArticleRequestDTO(ArticleModel article) {
-        this.id=article.getId();
-        this.auteur_id = article.getAuteur_id();
         this.titre = article.getTitre();
         this.contenu = article.getContenu();
 
     }
 
-
+    @Override
+    public String toString() {
+        return "ArticleRequestDTO [titre=" + this.getTitre() + ", theme=" + this.getTheme() + ", contenu=" + this.getContenu()+"]";
+    }
 
 
 	

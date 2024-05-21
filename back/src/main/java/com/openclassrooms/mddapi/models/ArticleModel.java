@@ -23,8 +23,7 @@ public class ArticleModel {
 	private Integer theme_id;
 	private Integer auteur_id;
 	private String contenu;
-	private Integer[] commentaires;
-	public Timestamp createdAt;
+	public Timestamp created_at;
 
 	public Integer getId() {
 		return id;
@@ -67,11 +66,11 @@ public class ArticleModel {
 	}
 
 	public Timestamp getCreated_at() {
-		return createdAt;
+		return created_at;
 	}
 
 	public void setCreated_at(Timestamp created_at) {
-		this.createdAt = created_at;
+		this.created_at = created_at;
 	}
 
 
@@ -80,25 +79,17 @@ public class ArticleModel {
 		this.setCreated_at(now);
 	}
 
-	public Integer[] getCommentaires() {
-		return commentaires;
-	}
-
-	public void setCommentaires(Integer[] commentaires) {
-		this.commentaires = commentaires;
-	}
 
     public ArticleModel() {
     }
 
-	public ArticleModel(Integer id, String titre, Integer theme_id, Integer auteur_id, String contenu, Integer[] commentaires, Timestamp createdAt) {
+	public ArticleModel(Integer id, String titre, Integer theme_id, Integer auteur_id, String contenu,  Timestamp created_at) {
 		this.id = id;
 		this.titre = titre;
 		this.theme_id = theme_id;
 		this.auteur_id = auteur_id;
 		this.contenu = contenu;
-		this.commentaires = commentaires;
-		this.createdAt = createdAt;
+		this.created_at = created_at;
 	}
 
 	public ArticleModel(String titre, String contenu, Integer auteur_id, Integer theme_id) {
@@ -108,11 +99,17 @@ public class ArticleModel {
 		this.theme_id = theme_id;
 	}
 
-	public ArticleModel(String titre, Integer theme_id, Integer auteur_id, String contenu, Timestamp createdAt) {
+	public ArticleModel(String titre, Integer theme_id, Integer auteur_id, String contenu, Timestamp created_at) {
 		this.titre = titre;
 		this.theme_id = theme_id;
 		this.auteur_id = auteur_id;
 		this.contenu = contenu;
-		this.createdAt = createdAt;
+		this.created_at = created_at;
+	}
+
+	@Override
+	public String toString() {
+		return "ArticleModel [id="+this.getId()+", titre=" + this.getTitre() + ", theme=" + this.getTheme_id() + ", contenu=" + this.getContenu()
+				+ ", auteur=" + this.getAuteur_id()+", created_at:"+this.getCreated_at()+"]";
 	}
 }

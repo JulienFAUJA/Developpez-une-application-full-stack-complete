@@ -37,7 +37,8 @@ private IAuthService authService;
 	public ResponseEntity<?> postRegister(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
 		TokenDTO token =  authService.register(userRegisterDTO);
 		if (token == null) {
-			ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
+			//ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
+			String errorResponse= "Erreur dans le token...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {
@@ -51,7 +52,8 @@ private IAuthService authService;
     public ResponseEntity<?> login(@Valid @RequestBody(required = true) UserLoginDTO userLoginDTO) {
 		TokenDTO token = authService.authenticating(userLoginDTO);
 		if (token == null) {
-			ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
+			//ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
+			String errorResponse= "Erreur dans le token...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {

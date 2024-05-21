@@ -39,7 +39,7 @@ public class ThemeController {
     @DeleteMapping
     @ResponseBody
     public ResponseEntity<?> UnsubscribeTheme(@Valid @RequestBody ThemeRequestDTO themeRequestDTO) {
-        ThemeResponseDTO themeResponseDTO = themeService.subscribeTheme(themeRequestDTO);
+        ThemeResponseDTO themeResponseDTO = themeService.unsubscribeTheme(themeRequestDTO);
         //if (themeResponseDTO.getMessage() == "Bad request: ") {
         if (themeResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(themeResponseDTO);

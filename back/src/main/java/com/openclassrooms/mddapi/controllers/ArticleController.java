@@ -1,8 +1,10 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.configuration.LocationHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.openclassrooms.mddapi.dto.ArticleRequestDTO;
@@ -19,15 +21,17 @@ public class ArticleController {
     private IArticleService articleService;
 
 	
-	@PostMapping 
 	@ResponseBody
-	public ResponseEntity<?> postArticle(@Valid @RequestBody ArticleRequestDTO articleRequestDTO) {
-		ArticleResponseDTO articleResponseDTO = articleService.postArticle(articleRequestDTO);
-		if (articleResponseDTO.getMessage() == "Bad request: ") {
+	@PostMapping("/create")
+	public ResponseEntity<?> postArticle(@Valid @RequestBody ArticleRequestDTO articleRequestDTO, Authentication authentication) {
+		String userEmail = authentication.getName();
+		System.out.println("articleRequestDTO:"+articleRequestDTO.toString()+"email:"+userEmail);
+		ArticleResponseDTO articleResponseDTO = articleService.postArticle(articleRequestDTO, userEmail);
+		if (articleResponseDTO.getContenu().isEmpty()) {
 			
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(articleResponseDTO);
 		}
-		else if (articleResponseDTO.getMessage() == "Unauthorized: ") {
+		else if (articleResponseDTO.getAuteur().isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(articleResponseDTO);
 		}
 		else {
@@ -41,8 +45,9 @@ public class ArticleController {
 		return ResponseEntity.status(HttpStatus.OK).body(articleService.getAllArticlesForUser());
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("/detail/{id}")
 	public ResponseEntity<?> getArticleById(@PathVariable("id") Integer id) {
+		System.out.println(LocationHelpers.ARTICLES_URI);
 		return ResponseEntity.status(HttpStatus.OK).body(articleService.getArticleById(id));
 	}
 	
