@@ -8,7 +8,7 @@ import com.openclassrooms.mddapi.models.ThemeModel;
 import java.util.List;
 
 @Repository
-public interface ThemeRepository extends CrudRepository<ThemeModel, Integer> { //findByTheme
+public interface ThemeRepository extends CrudRepository<ThemeModel, Integer> {
     public ThemeModel findByTheme(String theme);
 }
 

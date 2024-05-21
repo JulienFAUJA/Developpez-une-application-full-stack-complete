@@ -1,23 +1,12 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.openclassrooms.mddapi.models.ArticleModel;
-
-import java.sql.Timestamp;
 
 public class CommentaireRequestDTO {
 
-    private Integer id;
     private String contenu;
     private Integer user_id;
     private Integer article_id;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
 
     public String getContenu() {
@@ -46,13 +35,6 @@ public class CommentaireRequestDTO {
 
 
     public CommentaireRequestDTO() {
-    }
-
-    public CommentaireRequestDTO(Integer id, String contenu, Integer user_id, Integer article_id) {
-        this.id = id;
-        this.contenu = contenu;
-        this.user_id = user_id;
-        this.article_id = article_id;
     }
 
     public CommentaireRequestDTO(String contenu, Integer user_id, Integer article_id) {

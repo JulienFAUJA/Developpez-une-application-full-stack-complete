@@ -40,9 +40,10 @@ public class ArticleController {
 		 
 	}
 
-	@GetMapping
-	public ResponseEntity<?> getAllArticlesForUser() {
-		return ResponseEntity.status(HttpStatus.OK).body(articleService.getAllArticlesForUser());
+	@GetMapping("/all")
+	public ResponseEntity<?> getAllArticlesForUser(Authentication authentication) {
+		String userEmail = authentication.getName();
+		return ResponseEntity.status(HttpStatus.OK).body(articleService.getAllArticlesForUser(userEmail));
 	}
 
 	@GetMapping("/detail/{id}")

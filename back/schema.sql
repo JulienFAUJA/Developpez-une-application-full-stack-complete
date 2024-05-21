@@ -29,7 +29,8 @@ CREATE TABLE `COMMENTAIRES` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `contenu` varchar(2000),
   `article_id` integer NOT NULL,
-  `user_id` integer NOT NULL
+  `user_id` integer NOT NULL,
+  `created_at` timestamp
 );
 
 CREATE TABLE `ABONNEMENTS` (
@@ -73,15 +74,15 @@ INSERT INTO ARTICLES (titre, contenu, auteur_id, theme_id, created_at) VALUES
 
 
 -- Assumant que la table COMMENTAIRES a déjà les champs article_id et user_id
-INSERT INTO COMMENTAIRES (contenu, user_id, article_id) VALUES
-  ('Article très informatif, merci pour le partage!', 2, 1),
-  ('Je n\'ai pas compris la partie sur les closures en Rust, pouvez-vous élaborer?', 1, 1),
-  ('Merci pour cet article! Python est vraiment un langage puissant et accessible.', 3, 2),
-  ('Les sélecteurs CSS peuvent être déroutants au début, mais cet article aide beaucoup.', 5, 3),
-  ('C++ est intimidant, mais cet article rend les choses un peu plus claires.', 2, 4),
-  ('Rust semble être l\'avenir pour les systèmes sécurisés, très bon article!', 4, 1),
-  ('Cet article manque quelques exemples de code en Python.', 1, 3),
-  ('Excellent travail! Les optimisations C++ sont cruciales pour mon travail quotidien.', 3, 4);
+INSERT INTO COMMENTAIRES (contenu, user_id, article_id, created_at) VALUES
+  ('Article très informatif, merci pour le partage!', 2, 1, now()),
+  ('Je n\'ai pas compris la partie sur les closures en Rust, pouvez-vous élaborer?', 1, 1, now()),
+  ('Merci pour cet article! Python est vraiment un langage puissant et accessible.', 3, 2, now()),
+  ('Les sélecteurs CSS peuvent être déroutants au début, mais cet article aide beaucoup.', 5, 3, now()),
+  ('C++ est intimidant, mais cet article rend les choses un peu plus claires.', 2, 4, now()),
+  ('Rust semble être l\'avenir pour les systèmes sécurisés, très bon article!', 4, 1, now()),
+  ('Cet article manque quelques exemples de code en Python.', 1, 3, now()),
+  ('Excellent travail! Les optimisations C++ sont cruciales pour mon travail quotidien.', 3, 4, now());
 
 
 

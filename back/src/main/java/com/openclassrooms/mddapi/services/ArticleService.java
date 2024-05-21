@@ -1,12 +1,11 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.CommentaireResponseDTO;
-import com.openclassrooms.mddapi.models.CommentaireModel;
-import com.openclassrooms.mddapi.models.ThemeModel;
-import com.openclassrooms.mddapi.models.UserModel;
+import com.openclassrooms.mddapi.models.*;
 import com.openclassrooms.mddapi.repositories.CommentaireRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.repositories.UserRepository;
+import com.openclassrooms.mddapi.repositories.AbonnementRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
@@ -15,11 +14,11 @@ import org.springframework.stereotype.Service;
 
 import com.openclassrooms.mddapi.dto.ArticleRequestDTO;
 import com.openclassrooms.mddapi.dto.ArticleResponseDTO;
-import com.openclassrooms.mddapi.models.ArticleModel;
 import com.openclassrooms.mddapi.repositories.ArticleRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IArticleService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -35,6 +34,9 @@ public class ArticleService implements IArticleService {
 	private ThemeRepository themeRepository;
 
 	@Autowired
+	private AbonnementRepository abonnementRepository;
+
+	@Autowired
 	private UserRepository userRepository;
 
 	
@@ -46,46 +48,86 @@ public class ArticleService implements IArticleService {
 	public ArticleResponseDTO getArticleById(Integer id) {
 		// Récup de l'article
 		ArticleModel articleModel = this.articleRepository.findById(id).orElseThrow();
-		System.out.println("Article fetched:"+articleModel.toString());
-		if(articleModel != null){
-			Integer article_id=articleModel.getId();
-			System.out.println("article_id:"+article_id.toString());
-			// Récupérer les commentaires de cet article puisque c'est pour article/détail
-			List<CommentaireModel> commentaireModel = this.commentaireRepository.findAllByArticleId(article_id);
-			System.out.println("Commentaires fetched:"+commentaireModel.toString());
-			ArticleResponseDTO article_dto = modelMapper.map(articleModel, ArticleResponseDTO.class);
-			CommentaireResponseDTO commentaires_dto = modelMapper.map(commentaireModel, CommentaireResponseDTO.class);
+		System.out.println("Article fetched:" + articleModel.toString());
 
-			UserModel userModel = this.userRepository.findById(articleModel.getAuteur_id()).orElseThrow();
-			if (userModel != null){
-				String user_str = userModel.getName();
-				//commentaires_dto.setUser_str(user_str);
+		if (articleModel != null) {
+			Integer article_id = articleModel.getId();
+
+			System.out.println("article_id:" + article_id.toString());
+
+			// Récupérer les commentaires de cet article
+			List<CommentaireModel> commentaireModels = this.commentaireRepository.findAllByArticleId(article_id);
+			System.out.println("Commentaires fetched:" + commentaireModels.toString());
+
+			// Mapper ArticleModel à ArticleResponseDTO
+			ArticleResponseDTO article_dto = modelMapper.map(articleModel, ArticleResponseDTO.class);
+
+			Integer article_auteur_id = articleModel.getAuteur_id();
+			UserModel auteurModel = this.userRepository.findById(article_auteur_id).orElseThrow();
+			if(auteurModel != null){
+				article_dto.setAuteur(auteurModel.getName());
 			}
 
-			article_dto.setCommentaires((List<CommentaireResponseDTO>) commentaires_dto);
+			// Mapper chaque CommentaireModel à CommentaireResponseDTO
+			List<CommentaireResponseDTO> commentaires_dto = commentaireModels.stream().map(commentaire -> {
+				CommentaireResponseDTO commentaireDTO = modelMapper.map(commentaire, CommentaireResponseDTO.class);
+
+				// Récupérer l'auteur du commentaire
+				UserModel userModel = this.userRepository.findById(commentaire.getAuteur_id()).orElseThrow();
+				commentaireDTO.setUser_str(userModel.getName());
+
+				return commentaireDTO;
+			}).collect(Collectors.toList());
+
+			// Ajouter les commentaires à ArticleResponseDTO
+			article_dto.setCommentaires(commentaires_dto);
+
 			return article_dto;
 		}
 		return null;
 	}
 
-	@Override
-	public ArticleResponseDTO[] getArticlesByThemeId(Integer id) {
-		return null;
-	}
 
 	@Override
-	public ArticleResponseDTO[] getAllArticlesForUser() {
-		// Récup l'id de l'utilisateur connecté
+	public List<ArticleResponseDTO> getAllArticlesForUser(String userEmail) {
+		// Récupérer l'utilisateur connecté par email
+		UserModel userModel = this.userRepository.findByEmail(userEmail)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+		Integer userId = userModel.getId();
 
-		// Récup tous les theme_id des abonnements de l'utilisateur connecté
+		// Récupérer tous les theme_id des abonnements de l'utilisateur connecté
+		List<Integer> themeIds = this.abonnementRepository.findAllByUserId(userId)
+				.stream()
+				.map(AbonnementModel::getTheme_id) // Utilisez le modèle d'abonnement ici
+				.collect(Collectors.toList());
 
-		// Récup tous les articles qui ont ces theme_id
+		// Récupérer tous les articles ayant ces theme_id
+		List<ArticleModel> articleModels = this.articleRepository.findAllByThemeIdIn(themeIds);
 
+		// Mapper les articles récupérés à ArticleResponseDTO
+		List<ArticleResponseDTO> articleResponseDTOs = articleModels.stream()
+				.map(article -> {
+					ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
 
+					// Récupérer l'auteur de l'article
+					UserModel authorModel = this.userRepository.findById(article.getAuteur_id())
+							.orElseThrow(() -> new RuntimeException("Author not found"));
+					articleDTO.setAuteur(authorModel.getName());
 
+					// Récupérer le thème de l'article
+					ThemeModel themeModel = this.themeRepository.findById(article.getThemeId())
+							.orElseThrow(() -> new RuntimeException("Theme not found"));
+					articleDTO.setTheme(themeModel.getTheme());
 
-		return new ArticleResponseDTO[0];
+					return articleDTO;
+				})
+				.collect(Collectors.toList());
+
+		return articleResponseDTOs;
 	}
+
+
+
 
 
 	public ArticleResponseDTO postArticle(ArticleRequestDTO articleRequestDTO, String userEmail) {
@@ -102,7 +144,7 @@ public class ArticleService implements IArticleService {
 		String theme_name = articleRequestDTO.getTheme();
 		ThemeModel theme = themeRepository.findByTheme(theme_name);
 		Integer theme_id = theme.getId();
-		articleCreated.setTheme_id(theme_id);
+		articleCreated.setThemeId(theme_id);
 		articleCreated.setAuteur_id(user.getId());
 		System.out.println("Article Mapped :"+articleCreated.toString());
 		try {

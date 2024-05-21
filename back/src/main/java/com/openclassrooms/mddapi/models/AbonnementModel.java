@@ -2,26 +2,19 @@ package com.openclassrooms.mddapi.models;
 
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
 @Table(name = "ABONNEMENTS")
 public class AbonnementModel {
 
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Integer theme_id;
-    private Integer user_id;
+    @Column(name = "user_id")
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -41,12 +34,12 @@ public class AbonnementModel {
     }
 
 
-       public Integer getUser_id() {
-        return user_id;
+       public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 
@@ -54,17 +47,16 @@ public class AbonnementModel {
     public AbonnementModel() {
     }
 
-    public AbonnementModel(Integer id, Integer theme_id, Integer user_id) {
+    public AbonnementModel(Integer id, Integer theme_id, Integer userId) {
         this.id=id;
         this.theme_id=theme_id;
-        this.user_id=user_id;
+        this.userId=userId;
 
     }
 
-    public AbonnementModel(Integer theme_id, Integer user_id) {
-        this.id=id;
+    public AbonnementModel(Integer theme_id, Integer userId) {
         this.theme_id=theme_id;
-        this.user_id=user_id;
+        this.userId=userId;
 
     }
 

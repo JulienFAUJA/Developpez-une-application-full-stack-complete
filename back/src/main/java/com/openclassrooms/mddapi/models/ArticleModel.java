@@ -3,11 +3,7 @@ package com.openclassrooms.mddapi.models;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -20,7 +16,8 @@ public class ArticleModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titre;
-	private Integer theme_id;
+	@Column(name = "theme_id")
+	private Integer themeId;
 	private Integer auteur_id;
 	private String contenu;
 	public Timestamp created_at;
@@ -41,12 +38,12 @@ public class ArticleModel {
 		this.titre = titre;
 	}
 
-	public Integer getTheme_id() {
-		return theme_id;
+	public Integer getThemeId() {
+		return themeId;
 	}
 
-	public void setTheme_id(Integer theme_id) {
-		this.theme_id = theme_id;
+	public void setThemeId(Integer themeId) {
+		this.themeId = themeId;
 	}
 
 	public Integer getAuteur_id() {
@@ -83,25 +80,25 @@ public class ArticleModel {
     public ArticleModel() {
     }
 
-	public ArticleModel(Integer id, String titre, Integer theme_id, Integer auteur_id, String contenu,  Timestamp created_at) {
+	public ArticleModel(Integer id, String titre, Integer themeId, Integer auteur_id, String contenu, Timestamp created_at) {
 		this.id = id;
 		this.titre = titre;
-		this.theme_id = theme_id;
+		this.themeId = themeId;
 		this.auteur_id = auteur_id;
 		this.contenu = contenu;
 		this.created_at = created_at;
 	}
 
-	public ArticleModel(String titre, String contenu, Integer auteur_id, Integer theme_id) {
+	public ArticleModel(String titre, String contenu, Integer auteur_id, Integer themeId) {
 		this.titre = titre;
 		this.contenu = contenu;
 		this.auteur_id = auteur_id;
-		this.theme_id = theme_id;
+		this.themeId = themeId;
 	}
 
-	public ArticleModel(String titre, Integer theme_id, Integer auteur_id, String contenu, Timestamp created_at) {
+	public ArticleModel(String titre, Integer themeId, Integer auteur_id, String contenu, Timestamp created_at) {
 		this.titre = titre;
-		this.theme_id = theme_id;
+		this.themeId = themeId;
 		this.auteur_id = auteur_id;
 		this.contenu = contenu;
 		this.created_at = created_at;
@@ -109,7 +106,7 @@ public class ArticleModel {
 
 	@Override
 	public String toString() {
-		return "ArticleModel [id="+this.getId()+", titre=" + this.getTitre() + ", theme=" + this.getTheme_id() + ", contenu=" + this.getContenu()
+		return "ArticleModel [id="+this.getId()+", titre=" + this.getTitre() + ", theme=" + this.getThemeId() + ", contenu=" + this.getContenu()
 				+ ", auteur=" + this.getAuteur_id()+", created_at:"+this.getCreated_at()+"]";
 	}
 }
