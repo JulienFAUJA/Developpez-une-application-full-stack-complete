@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,27 +18,16 @@ public class CommentaireController {
     private ICommentaireService commentaireService;
 
 
-    @PostMapping
     @ResponseBody
-    public ResponseEntity<?> postCommentaire(@Valid @RequestBody CommentaireRequestDTO commentaireRequestDTO) {
-        CommentaireResponseDTO commentaireResponseDTO = commentaireService.postCommentaire(commentaireRequestDTO);
-        //if (commentaireResponseDTO.getMessage() == "Bad request: ") {
-        if (commentaireResponseDTO==null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commentaireResponseDTO);
+    @PostMapping("/create")
+    public ResponseEntity<?> postCommentaire(@Valid @RequestBody CommentaireRequestDTO commentaireRequestDTO, Authentication authentication) {
+        String userEmail = authentication.getName();
+        CommentaireResponseDTO commentaireResponseDTO = commentaireService.postCommentaire(commentaireRequestDTO, userEmail);
+        if (commentaireResponseDTO == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request");
         }
-        //else if (commentaireResponseDTO.getMessage() == "Unauthorized: ") {
-        else if (commentaireResponseDTO==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(commentaireResponseDTO);
-        }
-        else {
-            return ResponseEntity.ok(commentaireResponseDTO);
-        }
-
+        return ResponseEntity.ok(commentaireResponseDTO);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<?> getCommentairesByArticleId(@PathVariable("id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(commentaireService.getCommentairesByArticleId(id));
-    }
 
 }

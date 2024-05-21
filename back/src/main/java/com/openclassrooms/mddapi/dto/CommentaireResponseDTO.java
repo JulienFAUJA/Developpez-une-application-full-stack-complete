@@ -61,4 +61,9 @@ public class CommentaireResponseDTO {
         this.article_id = article_id;
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "CommentaireResponseDTO [id=" + this.getId()+"contenu=" + this.getContenu()+", articleId=" + this.getArticle_id()+", createdAt=" + this.getCreatedAt()+"]";
+    }
 }
