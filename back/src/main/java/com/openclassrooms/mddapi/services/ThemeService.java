@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.dto.ThemeRequestDTO;
 import com.openclassrooms.mddapi.dto.ThemeResponseDTO;
 import com.openclassrooms.mddapi.models.AbonnementModel;
 import com.openclassrooms.mddapi.models.CommentaireModel;
+import com.openclassrooms.mddapi.models.ThemeModel;
 import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.AbonnementRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
@@ -13,6 +14,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ThemeService implements IThemeService {
@@ -37,9 +42,35 @@ public class ThemeService implements IThemeService {
     }
 
     @Override
-    public ThemeResponseDTO getAllThemesForUser(String userEmail) {
+    public List<ThemeResponseDTO> getAllThemesForUser(String userEmail) {
+        // Récupérer l'utilisateur par email
         UserModel user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email"));
-        return null;
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + userEmail));
+
+        // Récupérer tous les theme_id des abonnements de l'utilisateur
+        List<Integer> subscribedThemeIds = abonnementRepository.findAllByUserId(user.getId())
+                .stream()
+                .map(AbonnementModel::getThemeId) // Utilisez le modèle d'abonnement ici
+                .collect(Collectors.toList());
+
+        // Récupérer tous les thèmes
+        Iterable<ThemeModel> allThemesIterable = themeRepository.findAll();
+
+        // Convertir Iterable en List
+        List<ThemeModel> allThemes = new ArrayList<>();
+        allThemesIterable.forEach(allThemes::add);
+
+        // Mapper les thèmes récupérés à ThemeResponseDTO en ajoutant l'information d'abonnement
+        List<ThemeResponseDTO> themeResponseDTOs = allThemes.stream()
+                .map(theme -> {
+                    ThemeResponseDTO themeResponseDTO = modelMapper.map(theme, ThemeResponseDTO.class);
+                    themeResponseDTO.setIsSubscribed(subscribedThemeIds.contains(theme.getId()));
+                    return themeResponseDTO;
+                })
+                .collect(Collectors.toList());
+
+        return themeResponseDTOs;
     }
+
+
 }

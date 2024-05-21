@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ThemeRepository extends CrudRepository<ThemeModel, Integer> {
-    public ThemeModel findByTheme(String theme);
+    ThemeModel findByTheme(String theme);
+    List<ThemeModel> findAll();
 }
 
 
