@@ -4,11 +4,9 @@ import com.openclassrooms.mddapi.dto.ThemeRequestDTO;
 import com.openclassrooms.mddapi.dto.ThemeResponseDTO;
 
 public interface IThemeService {
-    ThemeResponseDTO subscribeTheme(ThemeRequestDTO themeRequestDTO);
 
-    ThemeResponseDTO unsubscribeTheme(ThemeRequestDTO themeRequestDTO);
 
     ThemeResponseDTO getThemeById(Integer id);
 
-    ThemeResponseDTO getAllThemesForUser();
+    ThemeResponseDTO getAllThemesForUser(String userEmail);
 }

@@ -12,7 +12,8 @@ public class AbonnementModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer theme_id;
+    @Column(name = "theme_id")
+    private Integer themeId;
     @Column(name = "user_id")
     private Integer userId;
 
@@ -25,12 +26,12 @@ public class AbonnementModel {
     }
 
 
-    public Integer getTheme_id() {
-        return theme_id;
+    public Integer getThemeId() {
+        return themeId;
     }
 
-    public void setTheme_id(Integer theme_id) {
-        this.theme_id = theme_id;
+    public void setThemeId(Integer themeId) {
+        this.themeId = themeId;
     }
 
 
@@ -47,15 +48,15 @@ public class AbonnementModel {
     public AbonnementModel() {
     }
 
-    public AbonnementModel(Integer id, Integer theme_id, Integer userId) {
+    public AbonnementModel(Integer id, Integer themeId, Integer userId) {
         this.id=id;
-        this.theme_id=theme_id;
+        this.themeId = themeId;
         this.userId=userId;
 
     }
 
-    public AbonnementModel(Integer theme_id, Integer userId) {
-        this.theme_id=theme_id;
+    public AbonnementModel(Integer themeId, Integer userId) {
+        this.themeId = themeId;
         this.userId=userId;
 
     }

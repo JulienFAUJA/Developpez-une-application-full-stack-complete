@@ -98,7 +98,7 @@ public class ArticleService implements IArticleService {
 		// Récupérer tous les theme_id des abonnements de l'utilisateur connecté
 		List<Integer> themeIds = this.abonnementRepository.findAllByUserId(userId)
 				.stream()
-				.map(AbonnementModel::getTheme_id) // Utilisez le modèle d'abonnement ici
+				.map(AbonnementModel::getThemeId) // Utilisez le modèle d'abonnement ici
 				.collect(Collectors.toList());
 
 		// Récupérer tous les articles ayant ces theme_id
