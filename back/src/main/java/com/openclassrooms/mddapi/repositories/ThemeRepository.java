@@ -11,6 +11,7 @@ import java.util.List;
 public interface ThemeRepository extends CrudRepository<ThemeModel, Integer> {
     ThemeModel findByTheme(String theme);
     List<ThemeModel> findAll();
+    List<ThemeModel> findAllByIdIn(List<Integer> subscribedThemeIds);
 }
 
 

@@ -1,7 +1,14 @@
 package com.openclassrooms.mddapi.services;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.openclassrooms.mddapi.dto.*;
+import com.openclassrooms.mddapi.models.AbonnementModel;
+import com.openclassrooms.mddapi.models.ThemeModel;
+import com.openclassrooms.mddapi.repositories.AbonnementRepository;
+import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,10 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.mddapi.dto.TokenDTO;
-import com.openclassrooms.mddapi.dto.UserLoggedDTO;
-import com.openclassrooms.mddapi.dto.UserLoginDTO;
-import com.openclassrooms.mddapi.dto.UserRegisterDTO;
 import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
@@ -25,6 +28,12 @@ public class AuthService implements IAuthService{
 	
 	 @Autowired
 	 private UserRepository userRepository;
+
+	@Autowired
+	private ThemeRepository themeRepository;
+
+	@Autowired
+	private AbonnementRepository abonnementRepository;
 	
 	 @Autowired
 	 private ModelMapper modelMapper;
@@ -39,8 +48,32 @@ public class AuthService implements IAuthService{
         this.authenticationManager = authenticationManager;
 	 }
     
-     public UserLoggedDTO me(Principal user){
-    	return modelMapper.map(this.userRepository.findByEmail(user.getName()), UserLoggedDTO.class);
+     public UserProfileResponseDTO me(Principal user){
+		 UserLoggedDTO userLoggedDTO = modelMapper.map(this.userRepository.findByEmail(user.getName()), UserLoggedDTO.class);
+		 // Récupérer tous les theme_id des abonnements de l'utilisateur
+		 List<Integer> subscribedThemeIds = abonnementRepository.findAllByUserId(userLoggedDTO.getId())
+				 .stream()
+				 .map(AbonnementModel::getThemeId)
+				 .collect(Collectors.toList());
+
+		 // Récupérer les thèmes auxquels l'utilisateur est abonné
+		 List<ThemeModel> subscribedThemes = themeRepository.findAllByIdIn(subscribedThemeIds);
+
+		 // Mapper les thèmes récupérés à ThemeResponseDTO et définir isSubscribed à true
+		 List<ThemeResponseDTO> subscribedThemesDTO = subscribedThemes.stream()
+				 .map(theme -> {
+					 ThemeResponseDTO themeResponseDTO = modelMapper.map(theme, ThemeResponseDTO.class);
+					 themeResponseDTO.setIsSubscribed(true);
+					 return themeResponseDTO;
+				 })
+				 .collect(Collectors.toList());
+
+		 UserProfileResponseDTO userProfile = new UserProfileResponseDTO();
+		 userProfile.setUser(userLoggedDTO);
+		 userProfile.setSubscribedThemes(subscribedThemesDTO);
+
+		 return userProfile;
+
      }
     
      public TokenDTO register(UserRegisterDTO request) {

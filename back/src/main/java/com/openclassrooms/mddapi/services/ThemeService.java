@@ -41,8 +41,40 @@ public class ThemeService implements IThemeService {
         return null;
     }
 
+    /**
+     * Récupère tous les thèmes pour la page utilisateur connecté
+     * @param userEmail L'email de l'utilisateur connecté
+     * @return Les thèmes concernés
+     */
     @Override
     public List<ThemeResponseDTO> getAllThemesForUser(String userEmail) {
+        // Récupérer l'utilisateur par email
+        UserModel user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + userEmail));
+
+        // Récupérer tous les theme_id des abonnements de l'utilisateur
+        List<Integer> subscribedThemeIds = abonnementRepository.findAllByUserId(user.getId())
+                .stream()
+                .map(AbonnementModel::getThemeId)
+                .collect(Collectors.toList());
+
+        // Récupérer les thèmes auxquels l'utilisateur est abonné
+        List<ThemeModel> subscribedThemes = themeRepository.findAllByIdIn(subscribedThemeIds);
+
+        // Mapper les thèmes récupérés à ThemeResponseDTO
+        return subscribedThemes.stream()
+                .map(theme -> modelMapper.map(theme, ThemeResponseDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Récupère tous les thèmes mais stocke une distinction pour savoir si l'utilisateur connecté
+     * y est abonné ou pas. Cette distinction c'est un booléen dans les DTOs de retour
+     * @param userEmail L'email de l'utilisateur connecté
+     * @return Les thèmes concernés
+     */
+    @Override
+    public List<ThemeResponseDTO> getAllThemes(String userEmail) {
         // Récupérer l'utilisateur par email
         UserModel user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + userEmail));
