@@ -10,7 +10,7 @@ import { SessionInformation } from '../interfaces/sessionInformation.interface';
 })
 export class AuthService {
 
-  private pathService = 'api/auth';
+  private pathService = 'http://localhost:8080/api/auth';
 
 
   constructor(private httpClient: HttpClient) { }
@@ -19,7 +19,7 @@ export class AuthService {
     return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);
   }
 
-  public login(loginRequest: LoginRequest): Observable<SessionInformation> {
-    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);
+  public login(loginRequest: LoginRequest): Observable<any> {
+    return this.httpClient.post<LoginRequest>(`${this.pathService}/login`, loginRequest);
   }
 }
