@@ -107,6 +107,7 @@ public class AuthService implements IAuthService{
     	    String email = user.getUsername();
     	    String jwt = jwtService.generateToken(email);
     	    TokenDTO token = new TokenDTO(jwt);
+			System.out.println(token);
     	    return token;
      }
 }

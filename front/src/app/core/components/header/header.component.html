@@ -3,7 +3,7 @@
         <img src="./assets/images/logo_p6_mini.png" alt="MDD Logo" class="logo ">
     </a>
      <ul class="header_nav_ul header_item" *ngIf="screen_orientation==='landscape-primary'; else mobileView">
-        <li class="nav_item_li header_item"><a routerLink="/articles" routerLinkActive="active-item">Articles</a></li>
+        <li class="nav_item_li header_item"><a routerLink="/article/all" routerLinkActive="active-item">Articles</a></li>
         <li class="nav_item_li header_item"><a routerLink="/themes" routerLinkActive="active-item">Thèmes</a></li>
         <li class="nav_item_li header_item">
             <a class="user_icon" routerLink="/profile" routerLinkActive="active-item">
@@ -29,7 +29,7 @@
     </div>
     <div class="nav_overlay">
         <ul class="header_nav_ul_mobile" >
-            <li class=""><a routerLink="/articles" routerLinkActive="active-item">Articles</a></li>
+            <li class=""><a routerLink="/article/all" routerLinkActive="active-item">Articles</a></li>
             <li class=""><a routerLink="/themes" routerLinkActive="active-item">Thèmes</a></li>
             <li><a class="user_icon_mobile" routerLink="/profile" routerLinkActive="active-item">
                 <img src="./assets/images/icon_user_full.png" alt="Ellipse" class="user_icon_img user_icon">

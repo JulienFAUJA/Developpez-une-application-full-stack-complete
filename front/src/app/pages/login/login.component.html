@@ -1,7 +1,7 @@
 <app-header-anonymous></app-header-anonymous>
 
 <div class="form_container login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm">
     <h3>Se connecter</h3>
     <div class="form-group">
       <label for="email">E-mail</label>
@@ -15,6 +15,6 @@
       <label for="password">Mot de passe</label>
       <input formControlName="password" type="password" id="password" />
     </div>
-    <button class="purple_btn" type="submit">Se connecter</button>
+    <button class="purple_btn" type="submit" (click)="onSubmitForm()">Se connecter</button>
   </form>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -17,13 +17,11 @@ import { SessionService } from 'src/app/core/services/session.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   public hide = true;
   public onError = false;
-  loginForm = this.fb.group({
-    email:['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(3)]],
-  });
+  public loginForm!:FormGroup;
+  
 
   constructor(
     private authService: AuthService,
@@ -32,15 +30,26 @@ export class LoginComponent {
     private sessionService: SessionService
   ) {}
 
-  onSubmit() {
-    console.log(this.loginForm.value);
-    const loginRequest = this.loginForm.value as LoginRequest;
-    this.authService.login(loginRequest).subscribe({
-      next: (response: SessionInformation) => {
-        this.sessionService.logIn(response);
-        this.router.navigate(['/articles']);
-      },
-      error: (error) => (this.onError = true),
+  ngOnInit():void{
+
+    this.loginForm = this.fb.group({
+     
+      email:['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+       /*
+      email:[null],
+      password: [null]
+      */
     });
+
   }
+
+  onSubmitForm():void {
+    console.log(this.loginForm.value);
+    
+    const loginRequest = this.loginForm.value as LoginRequest;
+    this.authService.login(loginRequest).subscribe();
+    this.router.navigate(['/article/all']);
+    
+}
 }

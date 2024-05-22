@@ -14,8 +14,6 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
-    ReactiveFormsModule,
     CoreModule
   ],
   providers: [],
