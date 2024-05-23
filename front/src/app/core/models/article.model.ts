@@ -4,9 +4,9 @@ import { User } from "./user.model";
 
 export class Article {
   constructor(
-    public theme: Theme, 
+    public theme: string, 
     public titre: string,
-    public auteur: User,
+    public auteur: string,
     public contenu: string,
     public commentaires: Commentaire[],
     public createdAt: Date,

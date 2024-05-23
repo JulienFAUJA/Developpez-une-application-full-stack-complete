@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Article } from 'src/app/core/models/article.model';
 import { Commentaire } from 'src/app/core/models/commentaire.model';
 import { Theme } from 'src/app/core/models/theme.model';
 import { User } from 'src/app/core/models/user.model';
+import { ArticlesService } from 'src/app/core/services/articles.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -12,39 +15,37 @@ import { User } from 'src/app/core/models/user.model';
 export class ArticleDetailComponent implements OnInit {
   article!:Article;
   commentaires!:Commentaire[];
-  auteur=new User("julienfaujanet@gmail.com", "JulienFAUJA", "1234", new Date());
-  contenu_lorem= 'Pas mal du tout ce truc... Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel at corrupti aut voluptate sit accusamus enim excepturi porro quasi non, tempore minus tempora aliquid harum aspernatur perferendis debitis, rerum suscipit.';
-  constructor() { }
+  article_id!: number | null;
+  private destroy$: Subject<boolean> = new Subject();
+  error_str!:string;
+  constructor(private route: ActivatedRoute,
+    private articleService:ArticlesService) {
+  
+  }
 
   ngOnInit(): void {
-    this.article={
-      theme: new Theme("Javascript", "Langage de programmation côté client pour le web..."),
-      titre: 'Maitriser Javascript',
-      auteur: this.auteur,
-      contenu:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel at corrupti aut voluptate sit accusamus enim excepturi porro quasi non, tempore minus tempora aliquid harum aspernatur perferendis debitis, rerum suscipit.',
-      commentaires: [],
-      createdAt: new Date("2024-05-16T10:00:00")
-    };
-    this.commentaires=[
-      {
-        article_id: undefined,
-        auteur: this.auteur,
-        contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
-        
-      },
-      {
-        article_id: undefined,
-        auteur: this.auteur,
-        contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
-        
-      },
-      {
-        article_id: undefined,
-        auteur: this.auteur,
-        contenu: this.contenu_lorem+this.contenu_lorem+this.contenu_lorem+this.contenu_lorem,
-        
-      }
-    ]
+    const id = this.route.snapshot.params['id'];
+    this.article_id = id ? Number(id) : null;
+    this.destroy$ = new Subject<boolean>();
+
+    if (this.article_id) {
+      this.articleService
+        .detail(this.article_id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (articleResponse) => {
+            this.article = articleResponse;
+          },
+          error: (error) => {
+            this.error_str =
+              error ||
+              "Une erreur est survenue lors du chargement de l'article";
+          },
+        });
+    }
+  
+
+    this.commentaires=[];
   }
 
 }

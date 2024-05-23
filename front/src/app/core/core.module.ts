@@ -19,6 +19,7 @@ import { CommentaireComponent } from './components/commentaire/commentaire.compo
 import { BackComponent } from './components/back/back.component';
 import { HeaderAnonymousComponent } from './components/header-anonymous/header-anonymous.component';
 import { ArticleCreateComponent } from '../pages/article-create/article-create.component';
+import { httpInterceptorProviders } from '../interceptors';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,9 @@ import { ArticleCreateComponent } from '../pages/article-create/article-create.c
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' },
+  httpInterceptorProviders
+  ],
 })
 export class CoreModule {
   constructor() {

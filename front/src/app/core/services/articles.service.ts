@@ -9,7 +9,7 @@ import { SessionService } from './session.service';
   providedIn: 'root',
 })
 export class ArticlesService {
-  private pathService = 'api/article';
+  private pathService = 'http://localhost:8080/api/article';
 
   constructor(private httpClient: HttpClient, 
               private authService: AuthService,
@@ -20,7 +20,7 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(`${this.pathService}/all`);
   }
 
-  public detail(id: string): Observable<Article> {
+  public detail(id: number): Observable<Article> {
     return this.httpClient.get<Article>(`${this.pathService}/detail/${id}`);
   }
 

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section class="article-container">
+<section class="article-container" *ngIf="article">
     <mat-card>
         <mat-card-title>
             {{ article.titre}}
@@ -10,7 +10,7 @@
             <span class="second_line">
                 <span class="article_date">{{article.createdAt | date}}</span>
                 <span class="article_auteur">{{article.auteur}}</span>
-                <span class="article_theme">{{article.theme.theme}}</span>
+                <span class="article_theme">{{article.theme}}</span>
             </span>
             
             {{ article.contenu }}

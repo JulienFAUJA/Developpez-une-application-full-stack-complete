@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.CommentaireResponseDTO;
+import com.openclassrooms.mddapi.dto.ThemeResponseDTO;
 import com.openclassrooms.mddapi.models.*;
 import com.openclassrooms.mddapi.repositories.CommentaireRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
@@ -18,6 +19,7 @@ import com.openclassrooms.mddapi.repositories.ArticleRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IArticleService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -59,8 +61,15 @@ public class ArticleService implements IArticleService {
 			List<CommentaireModel> commentaireModels = this.commentaireRepository.findAllByArticleId(article_id);
 			System.out.println("Commentaires fetched:" + commentaireModels.toString());
 
+			// Récupérer le thème
+			Optional<ThemeModel> themeModel = themeRepository.findById(articleModel.getThemeId());
+
 			// Mapper ArticleModel à ArticleResponseDTO
 			ArticleResponseDTO article_dto = modelMapper.map(articleModel, ArticleResponseDTO.class);
+			if(themeModel.isPresent()){
+				ThemeResponseDTO themeResponseDTO = modelMapper.map(themeModel, ThemeResponseDTO.class);
+				article_dto.setTheme(themeResponseDTO.getTheme());
+			}
 
 			Integer article_auteur_id = articleModel.getAuteur_id();
 			UserModel auteurModel = this.userRepository.findById(article_auteur_id).orElseThrow();

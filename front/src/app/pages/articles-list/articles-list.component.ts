@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Article } from 'src/app/core/models/article.model';
 import { Theme } from 'src/app/core/models/theme.model';
 import { User } from 'src/app/core/models/user.model';
+import { ArticlesService } from 'src/app/core/services/articles.service';
 
 @Component({
   selector: 'app-articles-list',
@@ -11,10 +13,29 @@ import { User } from 'src/app/core/models/user.model';
 export class ArticlesListComponent implements OnInit {
   isAscending: boolean = true;
   articles!: Article[];
-  constructor() {}
+  articles$!:Observable<Article[]>;
+  private destroy$: Subject<boolean> = new Subject();
+  error_str!:string;
+  
+  constructor(private articleService:ArticlesService) {
+  
+  }
 
   ngOnInit(): void {
-    this.articles=[
+    this.articleService.all().pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (articleResponse) => {
+        this.articles.push(articleResponse);
+      },
+      error: (error) => {
+        this.error_str =
+          error ||
+          "Une erreur est survenue lors du chargement de l'article";
+      },
+    });
+    console.log(this.articles$);
+    
+    /*[
       {
         theme: new Theme("Javascript", "Langage de programmation côté client pour le web..."),
         titre: 'Maitriser Javascript',
@@ -55,6 +76,11 @@ export class ArticlesListComponent implements OnInit {
         commentaires: [],
         createdAt: new Date("2024-05-12T12:10:00")
       }
-    ]
+    ]*/
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
