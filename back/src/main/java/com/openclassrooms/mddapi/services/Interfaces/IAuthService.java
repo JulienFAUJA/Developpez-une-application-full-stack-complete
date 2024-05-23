@@ -9,7 +9,7 @@ public interface IAuthService {
 	UserProfileResponseDTO me(Principal user);
 	
 	TokenDTO register(UserRegisterDTO request);
-	
-	TokenDTO authenticating(UserLoginDTO request);
+
+	String authenticating(UserLoginDTO request);
 
 }

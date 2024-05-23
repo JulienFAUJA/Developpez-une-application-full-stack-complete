@@ -50,12 +50,9 @@ public class SpringSecurityConfig{
        .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                 		LocationHelpers.REGISTER_URI, 
-                		LocationHelpers.LOGIN_URI, 
-                		
-                		"images/**",
+                		LocationHelpers.LOGIN_URI,
                 		LocationHelpers.STATIC_URI,
-                		LocationHelpers.STATIC_URI_RECURSIVE,
-                		LocationHelpers.ARTICLES_URI
+                		LocationHelpers.STATIC_URI_RECURSIVE
                 		).permitAll()
                 // Pour tout le reste il faut être authentifié
                 .anyRequest().authenticated())

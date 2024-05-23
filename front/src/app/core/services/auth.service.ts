@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { LoginRequest } from '../interfaces/loginRequest.interface';
 import { RegisterRequest } from '../interfaces/registerRequest.interface';
-import { SessionInformation } from '../interfaces/sessionInformation.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +19,10 @@ export class AuthService {
   }
 
   public login(loginRequest: LoginRequest): Observable<any> {
-    return this.httpClient.post<LoginRequest>(`${this.pathService}/login`, loginRequest);
+    return this.httpClient.post<LoginRequest>(`${this.pathService}/login`, loginRequest).pipe(
+      tap(response => console.log("Login response: ", response))
+    );
   }
+
+
 }

@@ -14,14 +14,14 @@ import { ArticleCreateComponent } from './pages/article-create/article-create.co
 // to manage unauthenticated user to access private routes
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'api/auth/login', component: LoginComponent },
+  { path: 'api/auth/register', component: RegisterComponent },
   
-  { path: 'article/detail/:id', component: ArticleDetailComponent },
-  { path: 'article/create', component: ArticleCreateComponent },
-  { path: 'article/all', component: ArticlesListComponent },
-  { path: 'themes', component: ThemesListComponent },
-  { path: 'profile', component: UserComponent },
+  { path: 'api/article/detail/:id', component: ArticleDetailComponent },
+  { path: 'api/article/create', component: ArticleCreateComponent },
+  { path: 'api/article/all', component: ArticlesListComponent },
+  { path: 'api/themes', component: ThemesListComponent },
+  { path: 'api/profile', component: UserComponent },
 ];
 
 @NgModule({

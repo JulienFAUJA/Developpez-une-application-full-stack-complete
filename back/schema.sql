@@ -53,11 +53,11 @@ ALTER TABLE `ABONNEMENTS` ADD FOREIGN KEY (`theme_id`) REFERENCES `THEMES` (`id`
 
 
 INSERT INTO USERS (email, name, password, created_at) VALUES
-  ('julienfaujanet@gmail.com', 'Julien FAUJANET', '1234', now()),
-  ('technicien@tech.com', 'technicien stagiaire', '1234', now()),
-  ('technicien_chef@tech.com', 'technicien en chef', '1234', now()),
-  ('ingenieur@tech.com', 'Ingenieur', '1234', now()),
-  ('dev@web.com', 'Dev web senior', '1234', now());
+  ('julienfaujanet@gmail.com', 'Julien FAUJANET', '$2a$10$W/VUlTXPwmqId36XvGbawuRxZbltohkQDUBVsaElaJYrEaTpp6h9e', now()),
+  ('technicien@tech.com', 'technicien stagiaire', '$2a$10$W/VUlTXPwmqId36XvGbawuRxZbltohkQDUBVsaElaJYrEaTpp6h9e', now()),
+  ('technicien_chef@tech.com', 'technicien en chef', '$2a$10$W/VUlTXPwmqId36XvGbawuRxZbltohkQDUBVsaElaJYrEaTpp6h9e', now()),
+  ('ingenieur@tech.com', 'Ingenieur', '$2a$10$W/VUlTXPwmqId36XvGbawuRxZbltohkQDUBVsaElaJYrEaTpp6h9e', now()),
+  ('dev@web.com', 'Dev web senior', '$2a$10$W/VUlTXPwmqId36XvGbawuRxZbltohkQDUBVsaElaJYrEaTpp6h9e', now());
 
 INSERT INTO THEMES (theme, description) VALUES
   ('Python', "Langage de script, utilisé pour le prototypage et le domaine scientifique, nottement l'intelligence artificielle..."),

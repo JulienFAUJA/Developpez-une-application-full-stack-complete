@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.services;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.openclassrooms.mddapi.dto.*;
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Service;
 import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
+
+import javax.security.auth.login.LoginException;
 
 @Service
 public class AuthService implements IAuthService{
@@ -90,24 +93,43 @@ public class AuthService implements IAuthService{
 	    return token;
      }
 
-     public TokenDTO authenticating(UserLoginDTO request) {
-    	    	Authentication authentication;
+     public String authenticating(UserLoginDTO request) {
+
+/*
+		 List<UserModel> users = (List<UserModel>) userRepository.findAll();
+		 for (UserModel user : users) {
+			 user.setPassword(passwordEncoder.encode("F1x3m61@"));
+			 userRepository.save(user);
+		 }
+			System.out.println("OK");
+*/
     	    try {
-    	    	UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                );
-    	    	authentication = authenticationManager.authenticate(authToken);
+				System.out.println("user:"+request.toString());
+				Optional<UserModel> userOptional = userRepository.findByEmail(request.getEmail());
+
+				if (userOptional.isPresent()) {
+
+					UserModel user = userOptional.get();
+
+					if  (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+
+						return jwtService.generateToken(user.getEmail());
+					} else {
+						System.out.println("Mauvais password...");
+						return null;
+					}
+				} else {
+					System.out.println("Mauvais email...");
+					return null;
+				}
+
+
     	    }
-    	    catch (AuthenticationException e) {
-    	        return null;
-    	    }
-    	    SecurityContextHolder.getContext().setAuthentication(authentication);
-    	    UserModel user = (UserModel)authentication.getPrincipal();
-    	    String email = user.getUsername();
-    	    String jwt = jwtService.generateToken(email);
-    	    TokenDTO token = new TokenDTO(jwt);
-			System.out.println(token);
-    	    return token;
+			catch (AuthenticationException e) {
+				System.out.println("Authentication failed for user " + request.getEmail() +" / "+request.getPassword() + ": " + e.getMessage());
+				e.printStackTrace(); // Pour obtenir plus de détails sur l'erreur
+				return null;
+			}
+
      }
 }

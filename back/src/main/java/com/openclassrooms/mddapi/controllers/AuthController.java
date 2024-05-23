@@ -50,20 +50,26 @@ private IAuthService authService;
 
 	@PostMapping(value ="/login", consumes={"application/json"})
     public ResponseEntity<?> login(@Valid @RequestBody(required = true) UserLoginDTO userLoginDTO) {
+
+
+
+
 		System.out.println("UserLoginDTO"+userLoginDTO.toString());
-		TokenDTO token = authService.authenticating(userLoginDTO);
+		String token = authService.authenticating(userLoginDTO);
+
 		if (token == null) {
 			//ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
-			String errorResponse= "Erreur dans le token...";
+			String errorResponse= "Unauthorized: Erreur dans le token...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {
-			return ResponseEntity.ok(token);
+			System.out.println("Token:"+token);
+			return ResponseEntity.ok(new TokenDTO(token));
 		} 
     }
 	
 
-	@GetMapping(value ="/me")
+	@GetMapping(value ="/profile")
 	public ResponseEntity<?> getMe(Principal user) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.authService.me(user));
 		

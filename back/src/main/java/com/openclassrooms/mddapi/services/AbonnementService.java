@@ -48,3 +48,11 @@ public class AbonnementService implements IAbonnementService {
         return true;
     }
 }
+
+/*
+
+if (request.getServletPath().contains("/api/auth/register")) {
+    	      filterChain.doFilter(request, response);
+    	      return;
+    	    }
+ */
