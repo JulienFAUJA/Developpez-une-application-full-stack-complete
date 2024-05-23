@@ -7,17 +7,17 @@
     *ngIf="screen_orientation === 'landscape-primary'; else mobileView"
   >
     <li class="nav_item_li header_item">
-      <a routerLink="api/article/all" routerLinkActive="active-item"
+      <a routerLink="/article/all" routerLinkActive="active-item"
         >Articles</a
       >
     </li>
     <li class="nav_item_li header_item">
-      <a routerLink="api/themes" routerLinkActive="active-item">Thèmes</a>
+      <a routerLink="/themes" routerLinkActive="active-item">Thèmes</a>
     </li>
     <li class="nav_item_li header_item">
       <a
         class="user_icon"
-        routerLink="api/auth/profile"
+        routerLink="/profile"
         routerLinkActive="active-item"
       >
         <img
@@ -49,17 +49,17 @@
   <div class="nav_overlay">
     <ul class="header_nav_ul_mobile">
       <li class="">
-        <a routerLink="api/article/all" routerLinkActive="active-item"
+        <a routerLink="/article/all" routerLinkActive="active-item"
           >Articles</a
         >
       </li>
       <li class="">
-        <a routerLink="api/themes" routerLinkActive="active-item">Thèmes</a>
+        <a routerLink="/themes" routerLinkActive="active-item">Thèmes</a>
       </li>
       <li>
         <a
           class="user_icon_mobile"
-          routerLink="api/auth/profile"
+          routerLink="/profile"
           routerLinkActive="active-item"
         >
           <img

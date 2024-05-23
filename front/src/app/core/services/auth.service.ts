@@ -14,14 +14,18 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public register(registerRequest: RegisterRequest): Observable<void> {
-    return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);
+  public register(registerRequest: RegisterRequest): Observable<any> {
+    return this.httpClient.post<RegisterRequest>(`${this.pathService}/register`, registerRequest);
   }
 
   public login(loginRequest: LoginRequest): Observable<any> {
     return this.httpClient.post<LoginRequest>(`${this.pathService}/login`, loginRequest).pipe(
       tap(response => console.log("Login response: ", response))
     );
+  }
+
+  public get_token(): any{
+    return localStorage.getItem("token") || null;
   }
 
 

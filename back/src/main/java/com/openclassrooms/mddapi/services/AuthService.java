@@ -80,6 +80,7 @@ public class AuthService implements IAuthService{
      }
     
      public TokenDTO register(UserRegisterDTO request) {
+		 System.out.println(request.toString());
     	UserModel user = new UserModel(request.getEmail(), request.getName(), passwordEncoder.encode(request.getPassword()));
     	String jwt = jwtService.generateToken(request.getEmail());
         // vérifie si existe déjà

@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit{
   public loginForm!:FormGroup;
   private destroy$: Subject<boolean> = new Subject();
   errorStr: string = '';
-  
+
+
 
   constructor(
     private authService: AuthService,
@@ -32,11 +33,11 @@ export class LoginComponent implements OnInit{
   ) {}
 
   ngOnInit():void{
-
+    
     this.loginForm = this.fb.group({
      
       email:['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required]],
       
     });
 
@@ -49,15 +50,14 @@ export class LoginComponent implements OnInit{
     console.log("loginRequest: ",loginRequest);
     this.authService.login(loginRequest)
     .pipe(
-      tap(response => console.log),
       takeUntil(this.destroy$))
     
     .subscribe({
       next: (response) => {
         (this.errorStr = ''),
         tap(response => console.log),
-          localStorage.setItem('token', response);
-          this.router.navigate(['api/article/all']);
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['article/all']);
       },
       error: (error) => {
         this.errorStr =

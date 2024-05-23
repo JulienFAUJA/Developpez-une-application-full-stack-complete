@@ -17,7 +17,7 @@ import { httpInterceptorProviders } from './interceptors';
     BrowserAnimationsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
