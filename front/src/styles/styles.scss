@@ -46,14 +46,14 @@ form{
   }
 }
 
-button {
+button:not(.send) {
     padding: 10px 0;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
-    max-width: 250px; // Set a max-width for button as well
+    max-width: 250px; 
     &.purple_btn {
         background-color: $primary_color;
         color: white;

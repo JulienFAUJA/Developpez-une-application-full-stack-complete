@@ -84,7 +84,7 @@ public class ArticleService implements IArticleService {
 				// Récupérer l'auteur du commentaire
 				UserModel userModel = this.userRepository.findById(commentaire.getAuteur_id()).orElseThrow();
 				commentaireDTO.setUser_str(userModel.getName());
-
+				System.out.println("commentaireDTO:" + commentaireDTO.toString());
 				return commentaireDTO;
 			}).collect(Collectors.toList());
 

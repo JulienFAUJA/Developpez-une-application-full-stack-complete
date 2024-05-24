@@ -35,6 +35,7 @@ export class ArticleDetailComponent implements OnInit {
         .subscribe({
           next: (articleResponse) => {
             this.article = articleResponse;
+            this.commentaires=articleResponse.commentaires;
           },
           error: (error) => {
             this.error_str =

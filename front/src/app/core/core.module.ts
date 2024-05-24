@@ -20,6 +20,7 @@ import { BackComponent } from './components/back/back.component';
 import { HeaderAnonymousComponent } from './components/header-anonymous/header-anonymous.component';
 import { ArticleCreateComponent } from '../pages/article-create/article-create.component';
 import { httpInterceptorProviders } from '../interceptors';
+import { CommentaireFormComponent } from './components/commentaire-form/commentaire-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { httpInterceptorProviders } from '../interceptors';
     UserComponent,
     CommentaireComponent,
     BackComponent,
-    HeaderAnonymousComponent
+    HeaderAnonymousComponent,
+    CommentaireFormComponent
   ],
   imports: [
     CommonModule, 
@@ -58,7 +60,8 @@ import { httpInterceptorProviders } from '../interceptors';
     ArticleDetailComponent,
     ArticleCreateComponent,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommentaireFormComponent
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' },
   httpInterceptorProviders

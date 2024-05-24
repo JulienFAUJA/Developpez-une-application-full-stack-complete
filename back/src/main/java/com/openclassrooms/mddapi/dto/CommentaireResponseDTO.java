@@ -64,6 +64,6 @@ public class CommentaireResponseDTO {
 
     @Override
     public String toString() {
-        return "CommentaireResponseDTO [id=" + this.getId()+"contenu=" + this.getContenu()+", articleId=" + this.getArticle_id()+", createdAt=" + this.getCreatedAt()+"]";
+        return "CommentaireResponseDTO [id=" + this.getId()+"contenu=" + this.getContenu()+", User_str=" + this.getUser_str()+", createdAt=" + this.getCreatedAt()+"]";
     }
 }

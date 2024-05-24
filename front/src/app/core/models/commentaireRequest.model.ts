@@ -1,10 +1,8 @@
 import { User } from './user.model';
 
-export class Commentaire {
+export class CommentaireRequest {
   constructor(
-    public user_str: string,
     public contenu: string,
-    public id?: number,
     public article_id?: number
   ) {}
 }

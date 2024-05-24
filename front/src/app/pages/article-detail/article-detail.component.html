@@ -23,12 +23,7 @@
     <section class="feed">
         <app-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire"></app-commentaire>
     </section>
-        <div class="comment_form">
-            <textarea placeholder="Ecrivez votre commentaire..." class="rounded-textarea"></textarea>
-            <a class="send">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="send"></mat-icon>
-            </a>
-        </div>
+        <app-commentaire-form [articleId]="article.id"></app-commentaire-form>
 
 
 </section>

@@ -89,7 +89,8 @@ INSERT INTO COMMENTAIRES (contenu, user_id, article_id, created_at) VALUES
   ('C++ est intimidant, mais cet article rend les choses un peu plus claires.', 2, 4, now()),
   ('Rust semble être l\'avenir pour les systèmes sécurisés, très bon article!', 4, 1, now()),
   ('Cet article manque quelques exemples de code en Python.', 1, 3, now()),
-  ('Excellent travail! Les optimisations C++ sont cruciales pour mon travail quotidien.', 3, 4, now());
+  ('Excellent travail! Les optimisations C++ sont cruciales pour mon travail quotidien.', 3, 4, now()),
+  ('Je suis impatient de voir ce que donnera le CSS 4.0, si ça tarde trop à venir il sera créé par intelligence artificielle. Ce qui ne serait pas pour me déplaire. Si seulement le W3C pouvait imposer aux moteurs de navigateurs une norme pour les dimensions qui permettrait aux développeurs web de moins galérer avec le responsive. Mais je pense qu'il ne faut pas rêver. Peut-être pour le CSS 5.0, qui sortira surement aux alentours de 2070.', 1, 3, now());
 
 
 
