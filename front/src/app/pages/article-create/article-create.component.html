@@ -1,16 +1,19 @@
 <app-header></app-header>
 <div class="form_container article_form_container">
     
-    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmitForm()">
       <h3>Créer un nouvel article</h3>
       <div class="form-group form-group-max">
-        <input formControlName="theme_input" placeholder="Sélectionner un thème" type="text" id="theme_input">
+        <select formControlName="theme" id="theme_input">
+          <option value="">Sélectionner un thème</option>
+          <option *ngFor="let theme of themes" [value]="theme.theme">{{ theme.theme }}</option>
+        </select>
       </div>
       <div class="form-group form-group-max">
-        <input formControlName="titre_input" placeholder="Titre de l’article" type="text" id="titre_input">
+        <input formControlName="titre" placeholder="Titre de l’article" type="text" id="titre_input">
       </div>
       <div class="form-group form-group-max">
-        <textarea formControlName="article_content_textarea" placeholder="Contenu de l'article" id="article_content_textarea" class="rounded-textarea"></textarea>
+        <textarea formControlName="contenu" placeholder="Contenu de l'article" id="article_content_textarea" class="rounded-textarea"></textarea>
       </div>
       <button class="btn purple_btn" type="submit">Créer</button>
     </form>

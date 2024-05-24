@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import * as fr from '@angular/common/locales/fr';
 import { RouterModule } from '@angular/router';
@@ -21,50 +21,55 @@ import { HeaderAnonymousComponent } from './components/header-anonymous/header-a
 import { ArticleCreateComponent } from '../pages/article-create/article-create.component';
 import { httpInterceptorProviders } from '../interceptors';
 import { CommentaireFormComponent } from './components/commentaire-form/commentaire-form.component';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ArticleComponent,
     ThemeComponent,
-    HomeComponent, 
-    LoginComponent, 
-    RegisterComponent, 
-    ArticlesListComponent, 
-    ThemesListComponent, 
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ArticlesListComponent,
+    ThemesListComponent,
     ArticleDetailComponent,
     ArticleCreateComponent,
     UserComponent,
     CommentaireComponent,
     BackComponent,
     HeaderAnonymousComponent,
-    CommentaireFormComponent
+    CommentaireFormComponent,
   ],
   imports: [
-    CommonModule, 
-    RouterModule, 
+    CommonModule,
+    RouterModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ],
   exports: [
     HeaderComponent,
     ArticleComponent,
     ThemeComponent,
-    HomeComponent, 
-    LoginComponent, 
-    RegisterComponent, 
-    ArticlesListComponent, 
-    ThemesListComponent, 
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ArticlesListComponent,
+    ThemesListComponent,
     ArticleDetailComponent,
     ArticleCreateComponent,
     MaterialModule,
     ReactiveFormsModule,
-    CommentaireFormComponent
+    CommentaireFormComponent,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' },
-  httpInterceptorProviders
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
 })
 export class CoreModule {

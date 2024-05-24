@@ -27,13 +27,16 @@ public class ArticleController {
 		String userEmail = authentication.getName();
 		System.out.println("articleRequestDTO:"+articleRequestDTO.toString()+"email:"+userEmail);
 		ArticleResponseDTO articleResponseDTO = articleService.postArticle(articleRequestDTO, userEmail);
-		if (articleResponseDTO.getContenu().isEmpty()) {
+		if (articleResponseDTO==null) {
 			
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(articleResponseDTO);
 		}
+		/*
 		else if (articleResponseDTO.getAuteur().isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(articleResponseDTO);
 		}
+		*/
+
 		else {
 			return ResponseEntity.ok(articleResponseDTO);
 		}

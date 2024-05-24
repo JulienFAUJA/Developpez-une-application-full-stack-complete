@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
+import { ArticleRequest } from '../models/articleRequest.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class ArticlesService {
     return this.httpClient.get<Article>(`${this.pathService}/detail/${id}`);
   }
 
-  public create(article: Article): Observable<Article> {
+  public create(article: ArticleRequest): Observable<Article> {
     const token = localStorage.getItem('token');
     if (!token) {
       this.sessionService.logOut();

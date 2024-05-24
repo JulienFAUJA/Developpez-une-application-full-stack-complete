@@ -24,7 +24,7 @@ public class ThemeController {
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getThemeById(id));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> getAllThemesForUser(Authentication authentication) {
         String userEmail = authentication.getName();
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemes(userEmail));
