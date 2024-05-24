@@ -1,6 +1,4 @@
 import { Commentaire } from "./commentaire.model";
-import { Theme } from "./theme.model";
-import { User } from "./user.model";
 
 export class Article {
   constructor(

@@ -24,8 +24,8 @@ export class ArticlesListComponent implements OnInit {
   ngOnInit(): void {
     this.articleService.all().pipe(takeUntil(this.destroy$))
     .subscribe({
-      next: (articleResponse) => {
-        this.articles.push(articleResponse);
+      next: (articlesFromServer: Article[]) => {
+        this.articles = articlesFromServer;
       },
       error: (error) => {
         this.error_str =

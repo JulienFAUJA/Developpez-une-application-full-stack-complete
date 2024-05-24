@@ -109,10 +109,10 @@ public class ArticleService implements IArticleService {
 				.stream()
 				.map(AbonnementModel::getThemeId) // Utilisez le modèle d'abonnement ici
 				.collect(Collectors.toList());
-
+		System.out.println("themeIds:"+themeIds);
 		// Récupérer tous les articles ayant ces theme_id
 		List<ArticleModel> articleModels = this.articleRepository.findAllByThemeIdIn(themeIds);
-
+		System.out.println(articleModels);
 		// Mapper les articles récupérés à ArticleResponseDTO
 		List<ArticleResponseDTO> articleResponseDTOs = articleModels.stream()
 				.map(article -> {
@@ -131,7 +131,7 @@ public class ArticleService implements IArticleService {
 					return articleDTO;
 				})
 				.collect(Collectors.toList());
-
+		System.out.println(articleResponseDTOs);
 		return articleResponseDTOs;
 	}
 

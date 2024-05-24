@@ -14,4 +14,3 @@ public interface AbonnementRepository extends CrudRepository<AbonnementModel, In
 
 
 }
-
