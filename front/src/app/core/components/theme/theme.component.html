@@ -7,7 +7,10 @@
         <span>{{ theme.description }}</span>
     </mat-card-content>
     <mat-card-footer>
-        <button class="purple_btn subscribe_btn">S'abonner</button>
+        <button class="purple_btn subscribe_btn" (click)="toggleSubscription(theme.id)">
+  {{ theme.isSubscribed ? 'Se désabonner' : "S'abonner" }}
+</button>
+
     </mat-card-footer>
 
 </mat-card>

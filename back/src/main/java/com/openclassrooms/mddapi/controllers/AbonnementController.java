@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dto.AbonnementRequestDTO;
 import com.openclassrooms.mddapi.dto.AbonnementResponseDTO;
+import com.openclassrooms.mddapi.repositories.AbonnementRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAbonnementService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class AbonnementController {
 
     @Autowired
     private IAbonnementService abonnementService;
+
 
     @PostMapping("/subscribe")
     @ResponseBody
@@ -36,11 +38,12 @@ public class AbonnementController {
 
     }
 
-    @DeleteMapping("/unsubscribe/{id}")
+    @GetMapping("/subscription/{id}")
     @ResponseBody
-    public ResponseEntity<?> UnsubscribeTheme(@PathVariable("id") Integer id, Authentication authentication) {
+    public ResponseEntity<?> toggleSubscription(@PathVariable("id") Integer id, Authentication authentication) {
         String userEmail = authentication.getName();
-        boolean status = abonnementService.unsubscribeTheme(id, userEmail);
+
+        boolean status = abonnementService.toggleSubscription(id, userEmail);
         if (status==false) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request: ");
         }

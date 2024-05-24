@@ -6,7 +6,7 @@ import com.openclassrooms.mddapi.dto.AbonnementResponseDTO;
 public interface IAbonnementService {
     AbonnementResponseDTO subscribeTheme(AbonnementRequestDTO abonnementRequestDTO, String userEmail);
 
-    boolean unsubscribeTheme(Integer id, String userEmail);
+    boolean toggleSubscription(Integer id, String userEmail);
 
 }
 

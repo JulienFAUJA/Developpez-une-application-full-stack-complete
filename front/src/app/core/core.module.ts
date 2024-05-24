@@ -61,7 +61,7 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     ArticleCreateComponent,
     MaterialModule,
     ReactiveFormsModule,
-    CommentaireFormComponent,
+    CommentaireFormComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
