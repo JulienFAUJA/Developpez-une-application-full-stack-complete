@@ -28,9 +28,7 @@ export class LoginComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router,
-    private sessionService: SessionService
-  ) {}
+    private router: Router ) {}
 
   ngOnInit():void{
     
@@ -56,7 +54,7 @@ export class LoginComponent implements OnInit{
       next: (response) => {
         (this.errorStr = ''),
         tap(response => console.log),
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', response);
           this.router.navigate(['article/all']);
       },
       error: (error) => {

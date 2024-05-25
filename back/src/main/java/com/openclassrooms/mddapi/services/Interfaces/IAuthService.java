@@ -12,4 +12,5 @@ public interface IAuthService {
 
 	String authenticating(UserLoginDTO request);
 
+	String update_user(UserUpdateDTO userUpdateDTO, String userEmail);
 }

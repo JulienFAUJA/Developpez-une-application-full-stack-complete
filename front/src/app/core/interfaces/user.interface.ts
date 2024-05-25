@@ -1,8 +1,5 @@
-export interface User {
+export interface UserRequest {
   id: number;
   email: string;
-  lastName: string;
-  firstName: string;
-  admin: boolean;
-  createdAt: Date;
+  name: string;
 }

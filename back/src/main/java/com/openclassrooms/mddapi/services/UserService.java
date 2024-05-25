@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.services;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +39,8 @@ public class UserService implements UserDetailsService, IUserService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return  userRepository.findByEmail(username)
-				.orElseThrow(()-> new UsernameNotFoundException("User not found"));
+		return  userRepository.findByEmail(username).map(user -> new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Collections.emptyList()))
+				.orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé..."));
 	}
 
 

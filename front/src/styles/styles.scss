@@ -94,3 +94,10 @@ button:not(.send) {
 .feed_articles{
   clear: both;
 }
+
+.sep{
+  width: 90%;
+  border-top: 2px solid black !important;
+  color: #000 !important;
+  margin: 20px 0 !important;
+}

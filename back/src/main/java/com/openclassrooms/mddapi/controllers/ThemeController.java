@@ -25,9 +25,15 @@ public class ThemeController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllThemesForUser(Authentication authentication) {
+    public ResponseEntity<?> getAllThemes(Authentication authentication) {
         String userEmail = authentication.getName();
         return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemes(userEmail));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllThemesForUser(Authentication authentication) {
+        String userEmail = authentication.getName();
+        return ResponseEntity.status(HttpStatus.OK).body(themeService.getAllThemesForUser(userEmail));
     }
 
 }

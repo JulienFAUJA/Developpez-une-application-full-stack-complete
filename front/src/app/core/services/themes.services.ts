@@ -13,4 +13,8 @@ export class ThemeService {
   getThemes(): Observable<Theme[]> {
     return this.http.get<Theme[]>(`${this.pathService}/all`);
   }
+
+  getThemesForUser(): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.pathService}/user`);
+  }
 }

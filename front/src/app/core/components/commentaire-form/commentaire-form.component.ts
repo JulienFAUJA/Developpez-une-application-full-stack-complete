@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, tap } from 'rxjs';
@@ -18,6 +18,8 @@ private destroy$: Subject<boolean> = new Subject();
 errorStr: string = '';
 @Input()
 articleId!:number | undefined;
+
+@Output() newCommentPosted = new EventEmitter<void>();
 
 
   constructor(
@@ -52,17 +54,19 @@ articleId!:number | undefined;
     .subscribe({
       next: (response) => {
         (this.errorStr = ''),
-        tap(response => console.log),
+        tap(response => console.log)
+        this.commentaireForm.reset();
+        this.newCommentPosted.emit();
         
-          this.router.navigate(['article/all']);
       },
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
           console.log("erreur: ", this.errorStr);
       },
+      
     });
-    
+        
     
     
 }

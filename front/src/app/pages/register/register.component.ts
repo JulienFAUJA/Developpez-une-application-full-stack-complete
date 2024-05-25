@@ -52,7 +52,7 @@ export class RegisterComponent {
     .subscribe({
       next: (response) => {
         (this.errorStr = ''),
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', response);
           this.router.navigate(['article/all']);
       },
       error: (error) => {

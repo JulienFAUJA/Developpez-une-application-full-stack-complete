@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,8 +51,37 @@ public class AuthService implements IAuthService{
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
 	 }
-    
-     public UserProfileResponseDTO me(Principal user){
+
+	public String update_user(UserUpdateDTO userUpdateDTO, String email) {
+		// Récupérer l'utilisateur actuel
+		UserModel user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+		// Si un nouvel email est fourni et est différent de l'actuel
+		if (userUpdateDTO.getEmail() != null && !user.getEmail().equals(userUpdateDTO.getEmail()) && userUpdateDTO.getEmail().length()>9) {
+			// Vérifier si le nouvel email est déjà utilisé par un autre utilisateur
+			boolean emailExists = userRepository.findByEmail(userUpdateDTO.getEmail())
+					.map(existingUser -> !existingUser.getId().equals(user.getId()))
+					.orElse(false);
+			if (emailExists) {
+				return "Email already in use: " + userUpdateDTO.getEmail();
+			}
+			user.setEmail(userUpdateDTO.getEmail());
+		}
+		else {
+			user.setEmail(email);
+		}
+		// Mettre à jour le nom si fourni
+		if (userUpdateDTO.getName() != null) {
+			user.setName(userUpdateDTO.getName());
+		}
+		// Sauvegarder les modifications dans la base de données
+		userRepository.save(user);
+		System.out.println("UPDATED:"+user.toString()+"\nDTO:"+userUpdateDTO.toString());
+		return "User updated successfully";
+	}
+
+
+	public UserProfileResponseDTO me(Principal user){
 		 UserLoggedDTO userLoggedDTO = modelMapper.map(this.userRepository.findByEmail(user.getName()), UserLoggedDTO.class);
 		 // Récupérer tous les theme_id des abonnements de l'utilisateur
 		 List<Integer> subscribedThemeIds = abonnementRepository.findAllByUserId(userLoggedDTO.getId())

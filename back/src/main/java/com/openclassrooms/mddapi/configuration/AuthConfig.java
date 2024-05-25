@@ -20,6 +20,8 @@ import com.openclassrooms.mddapi.services.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Collections;
+
 @Configuration
 @RequiredArgsConstructor
 public class AuthConfig {
@@ -35,7 +37,10 @@ public class AuthConfig {
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé..."));
+		return username -> userRepository.findByEmail(username)
+				.map(user -> new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Collections.emptyList()))
+				.orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé..."));
+
 	}	
 	
 	@Bean

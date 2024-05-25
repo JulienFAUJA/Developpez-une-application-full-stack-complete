@@ -39,7 +39,7 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     CommentaireComponent,
     BackComponent,
     HeaderAnonymousComponent,
-    CommentaireFormComponent,
+    CommentaireFormComponent
   ],
   imports: [
     CommonModule,

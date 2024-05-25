@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Theme } from '../../models/theme.model';
 import { AbonnementService } from '../../services/abonnements.service';
 
@@ -10,6 +10,7 @@ import { AbonnementService } from '../../services/abonnements.service';
 })
 export class ThemeComponent implements OnInit {
   @Input() theme!:Theme;
+  @Output() subscriptionChanged = new EventEmitter<void>();  // Émetteur d'événements
   constructor(private abonnementService:AbonnementService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class ThemeComponent implements OnInit {
         next: (response) => {
           console.log(response);  
           this.theme.isSubscribed = !this.theme.isSubscribed;  // Supposer une modification de l'état ici
+          this.subscriptionChanged.emit();  // Émet l'événement après changement
         },
         error: (error) => console.error('Erreur lors de la modification de l’abonnement', error)
       });

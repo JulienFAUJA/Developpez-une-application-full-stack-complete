@@ -21,9 +21,10 @@
     <h3 class="comment_title_section">Commentaires</h3>
 
     <section class="feed">
-        <app-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire"></app-commentaire>
+        <app-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire"
+       ></app-commentaire>
     </section>
-        <app-commentaire-form [articleId]="article.id"></app-commentaire-form>
+        <app-commentaire-form [articleId]="article.id" (newCommentPosted)="loadArticle()"></app-commentaire-form>
 
 
 </section>

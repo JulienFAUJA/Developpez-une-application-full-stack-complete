@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class UserModel implements UserDetails, Principal{
+public class UserModel implements Principal{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +60,7 @@ public class UserModel implements UserDetails, Principal{
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Override
+
 	public String getPassword() {
 		return password;
 	}
@@ -104,43 +104,5 @@ public class UserModel implements UserDetails, Principal{
 		this.password = password;
 		this.created_at = created_at;
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return authorities;
-	}
-
-
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
-	
-	
-	
-	
 
 }

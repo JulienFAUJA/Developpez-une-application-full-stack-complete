@@ -18,13 +18,26 @@
         .comment_form{
             padding-top: 20px;
             display: flex; /* Utilisez flex pour les éléments de navigation */
-            .send{
-                rotate: -45deg;
-                justify-content: flex-end; /* Alignez les éléments de navigation à droite */
+
+            button.send{
+                position: relative;
+                top: -20px;  
+                left: 20px; 
+                transform: rotate(-45deg);
+                
                 margin-left: 4%;
                 margin-top: 3%;
                 background-color:white;
-                border:none;
+                border: none;
+                outline: none; /* Supprime l'outline qui peut aussi apparaître lors du focus */
+
+                &:hover,
+                &:visited,
+                &:focus,
+                &:active { /* Ajout de :active et :focus pour couvrir tous les cas d'interaction */
+                    border: none;
+                    outline: none;
+                }
                 .mat-icon{
                     cursor: pointer;
                     justify-content: flex-end; /* Alignez les éléments de navigation à droite */

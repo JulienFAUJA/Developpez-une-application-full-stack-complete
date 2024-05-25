@@ -63,7 +63,11 @@ public class ThemeService implements IThemeService {
 
         // Mapper les thèmes récupérés à ThemeResponseDTO
         return subscribedThemes.stream()
-                .map(theme -> modelMapper.map(theme, ThemeResponseDTO.class))
+                .map(theme -> {
+                    ThemeResponseDTO themeResponseDTO = modelMapper.map(theme, ThemeResponseDTO.class);
+                    themeResponseDTO.setIsSubscribed(true);  // Définir isSubscribed à true pour tous les thèmes abonnés
+                    return themeResponseDTO;
+                })
                 .collect(Collectors.toList());
     }
 

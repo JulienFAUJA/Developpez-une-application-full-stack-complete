@@ -24,6 +24,18 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadArticle();
+    //this.commentaires=[];
+  }
+
+  
+ngOnDestroy(): void {
+  this.destroy$.next(true);
+  this.destroy$.complete();
+}
+
+
+  loadArticle():void{
     const id = this.route.snapshot.params['id'];
     this.article_id = id ? Number(id) : null;
     this.destroy$ = new Subject<boolean>();
@@ -46,7 +58,7 @@ export class ArticleDetailComponent implements OnInit {
     }
   
 
-    this.commentaires=[];
+    
   }
 
 }
