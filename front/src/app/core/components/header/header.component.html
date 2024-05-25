@@ -42,6 +42,43 @@
   </ng-template>
 </div>
 
+
+
+
+
+<aside id="sidebar" class="sidebar">
+  <div class="nav_overlay">
+    <ul class="header_nav_ul_mobile">
+      <li class="">
+        <a routerLink="/article/all" routerLinkActive="active-item"
+          >Articles</a
+        >
+      </li>
+      <li class="">
+        <a routerLink="/themes" routerLinkActive="active-item">Thèmes</a>
+      </li>
+      <li>
+        <a
+          class="user_icon_mobile"
+          routerLink="/profile"
+          routerLinkActive="active-item">
+          <img
+            src="./assets/images/icon_user_full.png"
+            alt="Ellipse"
+            class="user_icon_img user_icon"
+          />
+        </a>
+      </li>
+    </ul>
+    </div>
+
+</aside>
+<div id="overlay" class="overlay" (click)="toggleMenu()"></div>
+
+
+
+
+<!-- 
 <div class="nav_overlay_container" *ngIf="menuOpen === true">
   <div class="blur_screen_div">
     <img />
@@ -71,6 +108,6 @@
       </li>
     </ul>
   </div>
-</div>
+</div> -->
 
 <app-back></app-back>

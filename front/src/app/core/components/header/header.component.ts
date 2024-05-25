@@ -30,5 +30,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    document.getElementById('sidebar')!.classList.toggle('open');
+    document.getElementById('overlay')!.classList.toggle('show');
   }
 }
