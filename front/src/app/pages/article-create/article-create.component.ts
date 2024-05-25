@@ -59,6 +59,7 @@ export class ArticleCreateComponent implements OnInit {
       next: (response) => {
         (this.errorStr = ''),
         console.log(response);
+        this.router.navigate(['article/all']);
           
       },
       error: (error) => {
