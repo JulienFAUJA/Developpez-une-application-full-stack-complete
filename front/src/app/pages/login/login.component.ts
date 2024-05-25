@@ -11,7 +11,6 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { LoginRequest } from 'src/app/core/interfaces/loginRequest.interface';
 import { SessionInformation } from 'src/app/core/interfaces/sessionInformation.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -52,9 +51,9 @@ export class LoginComponent implements OnInit{
     
     .subscribe({
       next: (response) => {
-        (this.errorStr = ''),
-        tap(response => console.log),
-          localStorage.setItem('token', response);
+        //tap(response => console.log),
+        tap((response) => console.log('[LoginComponent] Login response: ', response)),
+          localStorage.setItem('token', response.token);
           this.router.navigate(['article/all']);
       },
       error: (error) => {

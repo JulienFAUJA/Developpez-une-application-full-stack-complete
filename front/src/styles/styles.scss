@@ -62,37 +62,30 @@ button:not(.send) {
         }
   }
 }
-
-.feed{
+.feed_articles{
   clear: both;
-  
-  padding: 0;
-  app-theme,app-article{
-      margin: 0;
-      width: 48%;
-      &:nth-child(even){
-          float: left;
-      }
-      &:nth-child(odd){
-          float: right;
-      }
+  margin-top: 20px;
+  // Media query pour les appareils en orientation portrait
+  @media (orientation: portrait) {
+    margin-top: 40px;
   }
+}
+.feed {
+ 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crée une grille avec deux colonnes de taille égale */
+  grid-gap: 10px; /* Espace entre les colonnes et les lignes */
+  padding: 20px; /* Padding autour de la grille */
 
   // Media query pour les appareils en orientation portrait
   @media (orientation: portrait) {
-    display: block;
-    
-    app-theme,app-article {
-      clear: both;
-      width: 100%;
-      display: block; // Chaque élément prend sa propre ligne
-     
-    }
+    grid-template-columns: 1fr; /* En mode portrait, utilise une seule colonne */
+    padding-top: 20px;
   }
 }
 
-.feed_articles{
-  clear: both;
+app-theme, app-article {
+  width: 100%; /* Les enfants prennent toute la largeur de la colonne */
 }
 
 .sep{

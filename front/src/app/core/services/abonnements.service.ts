@@ -11,7 +11,7 @@ export class AbonnementService {
   constructor(private http: HttpClient) { }
 
 
-  toggleSubscription(id: number): Observable<any> {
+  toggleSubscription(id: number): Observable<string> {
     return this.http.get(`${this.pathService}/subscription/${id}`, {responseType: 'text'});
   }
 }

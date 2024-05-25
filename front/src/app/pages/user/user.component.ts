@@ -66,6 +66,9 @@ export class UserComponent implements OnInit {
       });
     }
   
+    onLogOut():void{
+      this.authService.logOut();
+    }
 
 
   onSubmit() {

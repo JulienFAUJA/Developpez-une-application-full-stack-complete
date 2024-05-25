@@ -4,8 +4,8 @@
     <a class="trier_par" href="javascript:void(0);">
        Trier par  <mat-icon aria-hidden="false" aria-label="Example home icon"   fontIcon="{{ isAscending ? 'north' : 'south' }}"></mat-icon>
     </a>
+   
 </div>
-
 <section class="feed feed_articles">
         <app-article *ngFor="let article of articles" [article]="article" routerLink="/article/detail/{{article.id}}" routerLinkActive="active-item"></app-article>
 </section>

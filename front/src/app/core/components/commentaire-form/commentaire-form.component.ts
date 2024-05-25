@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, tap } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
-import { SessionService } from '../../services/session.service';
 import { CommentaireRequest } from '../../models/commentaireRequest.model';
 import { CommentairesService } from '../../services/commentaires.services';
 
@@ -25,8 +23,7 @@ articleId!:number | undefined;
   constructor(
     private commentairesService: CommentairesService,
     private fb: FormBuilder,
-    private router: Router,
-    private sessionService: SessionService
+    private router: Router
   ) {}
 
   ngOnInit():void{

@@ -33,7 +33,7 @@ export class ArticlesListComponent implements OnInit {
           "Une erreur est survenue lors du chargement de l'article";
       },
     });
-    console.log(this.articles$);
+    console.log(this.articles);
     
     /*[
       {

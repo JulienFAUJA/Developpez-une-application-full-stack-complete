@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { RegisterRequest } from 'src/app/core/interfaces/registerRequest.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-register',
@@ -23,8 +22,7 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router,
-    private sessionService: SessionService
+    private router: Router
   ) {}
 
   ngOnInit():void{
@@ -52,7 +50,7 @@ export class RegisterComponent {
     .subscribe({
       next: (response) => {
         (this.errorStr = ''),
-          localStorage.setItem('token', response);
+          localStorage.setItem('token', response.token);
           this.router.navigate(['article/all']);
       },
       error: (error) => {

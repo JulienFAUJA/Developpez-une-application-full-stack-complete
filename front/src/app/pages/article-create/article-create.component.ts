@@ -5,7 +5,6 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { ArticleRequest } from 'src/app/core/models/articleRequest.model';
 import { Theme } from 'src/app/core/models/theme.model';
 import { ArticlesService } from 'src/app/core/services/articles.service';
-import { SessionService } from 'src/app/core/services/session.service';
 import { ThemeService } from 'src/app/core/services/themes.services';
 
 @Component({
@@ -24,8 +23,7 @@ export class ArticleCreateComponent implements OnInit {
     private themesService: ThemeService,
     private articlesService: ArticlesService,
     private fb: FormBuilder,
-    private router: Router,
-    private sessionService: SessionService
+    private router: Router
   ) {}
 
   ngOnInit():void{

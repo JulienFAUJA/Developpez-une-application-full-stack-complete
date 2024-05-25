@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
 import { AuthService } from './auth.service';
-import { SessionService } from './session.service';
 import { ArticleRequest } from '../models/articleRequest.model';
 
 @Injectable({
@@ -13,11 +12,12 @@ export class ArticlesService {
   private pathService = 'http://localhost:8080/api/article';
 
   constructor(private httpClient: HttpClient, 
-              private authService: AuthService,
-              private sessionService: SessionService,
+              private authService: AuthService
             ) {}
 
   public all(): Observable<Article[]> {
+    const token = localStorage.getItem('token');
+    console.log("token:"+token);
     return this.httpClient.get<Article[]>(`${this.pathService}/all`);
   }
 
@@ -27,8 +27,9 @@ export class ArticlesService {
 
   public create(article: ArticleRequest): Observable<Article> {
     const token = localStorage.getItem('token');
+    console.log("token:"+token);
     if (!token) {
-      this.sessionService.logOut();
+      this.authService.logOut();
     }
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return this.httpClient.post<Article>(`${this.pathService}/create`, article, {
