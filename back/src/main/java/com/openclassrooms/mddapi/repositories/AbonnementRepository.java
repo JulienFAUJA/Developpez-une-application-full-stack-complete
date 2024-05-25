@@ -13,4 +13,6 @@ public interface AbonnementRepository extends CrudRepository<AbonnementModel, In
     Optional<AbonnementModel> findByUserIdAndThemeId(Integer user_id, Integer theme_id);
 
 
+    @Override
+    void delete(AbonnementModel abonnementModel);
 }

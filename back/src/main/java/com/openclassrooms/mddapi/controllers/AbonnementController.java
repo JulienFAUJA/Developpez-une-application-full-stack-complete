@@ -43,8 +43,8 @@ public class AbonnementController {
     public ResponseEntity<?> toggleSubscription(@PathVariable("id") Integer id, Authentication authentication) {
         String userEmail = authentication.getName();
 
-        boolean status = abonnementService.toggleSubscription(id, userEmail);
-        if (status==false) {
+        String response = abonnementService.toggleSubscription(id, userEmail);
+        if (response=="") {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request: ");
         }
         /*
@@ -54,7 +54,7 @@ public class AbonnementController {
         */
 
         else {
-            return ResponseEntity.ok("désabonné avec succès...");
+            return ResponseEntity.ok(response);
         }
 
     }

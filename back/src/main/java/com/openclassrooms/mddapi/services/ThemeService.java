@@ -100,7 +100,7 @@ public class ThemeService implements IThemeService {
                     return themeResponseDTO;
                 })
                 .collect(Collectors.toList());
-
+        System.out.println("ALL THEMES:"+themeResponseDTOs.toString());
         return themeResponseDTOs;
     }
 

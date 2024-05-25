@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Theme } from '../../models/theme.model';
-import { ThemeService } from '../../services/themes.services';
+import { AbonnementService } from '../../services/abonnements.service';
 
 
 @Component({
@@ -10,14 +10,20 @@ import { ThemeService } from '../../services/themes.services';
 })
 export class ThemeComponent implements OnInit {
   @Input() theme!:Theme;
-  constructor(private themeService:ThemeService) { }
+  constructor(private abonnementService:AbonnementService) { }
 
   ngOnInit(): void {
   }
 
   toggleSubscription(themeId: number | undefined): void {
-    if(themeId != undefined){ 
-      this.themeService.toggleSubscription(themeId);
+    if (themeId !== undefined) { 
+      this.abonnementService.toggleSubscription(themeId).subscribe({
+        next: (response) => {
+          console.log(response);  
+          this.theme.isSubscribed = !this.theme.isSubscribed;  // Supposer une modification de l'état ici
+        },
+        error: (error) => console.error('Erreur lors de la modification de l’abonnement', error)
+      });
     }
   }
 
