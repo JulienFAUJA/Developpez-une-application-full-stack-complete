@@ -1,8 +1,21 @@
 <mat-card>
-    <span class="comment_auteur">
-        {{ commentaire.user_str }} 
+    <span class="landscape" *ngIf="screen_orientation === 'landscape-primary'; else mobileView">
+        <span class="comment_auteur">
+            {{ commentaire.user_str }} 
+        </span>
+        <span class="comment_content">
+            {{ commentaire.contenu }} 
+        </span>
     </span>
-    <span class="comment_content">
-        {{ commentaire.contenu }} 
-    </span>
+    <ng-template #mobileView>
+        <span class="portrait">
+            <span class="comment_content">
+                {{ commentaire.contenu }} 
+            </span>
+            <span class="comment_auteur">
+                {{ commentaire.user_str }} 
+            </span>
+        </span>
+      </ng-template>
+    
 </mat-card>

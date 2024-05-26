@@ -1,6 +1,6 @@
 .article-container{
-    width: 60%;
-    margin-left: 20%;
+    width: 80%;
+    margin-left: 10%;
     .second_line{
         display: block;
         margin-top: 10px;
@@ -11,7 +11,10 @@
             margin-right: 2%;
         }
     }
-        
+    @media (orientation: portrait) {
+        width: 90%;
+        margin-left: 5%;
+    }  
     
 }
 .comment_title_section{

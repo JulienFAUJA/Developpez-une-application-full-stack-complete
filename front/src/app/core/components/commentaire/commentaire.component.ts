@@ -8,7 +8,25 @@ import { Commentaire } from '../../models/commentaire.model';
 })
 export class CommentaireComponent implements OnInit {
   @Input() commentaire!: Commentaire;
+  screen_orientation!: string;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  
+  ngOnInit(): void {
+    this.screen_orientation = window.screen.orientation.type;
+    console.log(this.screen_orientation);
+    window.addEventListener('orientationchange', this.updateOrientation);
+    this.updateOrientation(); // Appel initial pour définir l'orientation
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('orientationchange', this.updateOrientation);
+  }
+
+  updateOrientation = (): void => {
+    this.screen_orientation = window.screen.orientation.type;
+    console.log('Orientation changed to:', this.screen_orientation);
+  };
+
 }
