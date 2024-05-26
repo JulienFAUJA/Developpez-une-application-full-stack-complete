@@ -7,6 +7,7 @@ public class UserLoggedDTO {
 	private Integer id;
     private String email;
     private String name;
+    private String password;
     private Timestamp created_at;
 
     
@@ -43,11 +44,18 @@ public class UserLoggedDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-    
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		return "UserLoggedDTO [id=" + id + ", email=" + email + ", name=" + name + ", created_at=" + created_at+ "]";
+		return "UserLoggedDTO [id=" + id + ", email=" + email + ", name=" + name + ", created_at=" + created_at+ ", password="+password+"]";
 	}
 
 }

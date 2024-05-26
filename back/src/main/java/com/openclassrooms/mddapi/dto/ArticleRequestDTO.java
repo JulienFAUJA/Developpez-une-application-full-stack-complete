@@ -8,8 +8,6 @@ import java.sql.Timestamp;
 
 public class ArticleRequestDTO {
 
-
-
     private String titre;
     private String theme;
     private String contenu;
@@ -49,9 +47,6 @@ public class ArticleRequestDTO {
         this.theme = theme;
         this.contenu = contenu;
     }
-
-
-
 
     public ArticleRequestDTO(ArticleModel article) {
         this.titre = article.getTitre();

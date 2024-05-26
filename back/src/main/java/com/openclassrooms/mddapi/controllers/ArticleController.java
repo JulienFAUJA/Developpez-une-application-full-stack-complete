@@ -31,11 +31,6 @@ public class ArticleController {
 			
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(articleResponseDTO);
 		}
-		/*
-		else if (articleResponseDTO.getAuteur().isEmpty()) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(articleResponseDTO);
-		}
-		*/
 
 		else {
 			return ResponseEntity.ok(articleResponseDTO);

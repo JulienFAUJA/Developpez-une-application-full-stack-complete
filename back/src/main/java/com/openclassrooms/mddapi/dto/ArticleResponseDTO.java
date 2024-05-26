@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ArticleResponseDTO {
 
-
 	private Integer id;
 	private String auteur;
 	private String theme;

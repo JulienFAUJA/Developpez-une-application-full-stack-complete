@@ -25,10 +25,12 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
    this.userForm = this.fb.group({
      
       name: [''],
       email:['', [Validators.email]],
+      password: ['', [Validators.minLength(8), Validators.pattern(passwordPattern)]],
       
     });
       this.get();
@@ -44,7 +46,8 @@ export class UserComponent implements OnInit {
           this.user=response;
           this.userForm.setValue({
             name:response.user.name,
-            email:response.user.email
+            email:response.user.email,
+            password:response.user.password
           }),
           this.themes=response.subscribedThemes;
             

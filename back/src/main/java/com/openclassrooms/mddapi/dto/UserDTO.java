@@ -64,10 +64,5 @@ public class UserDTO {
 		this.created_at = created_at;
 	}
 	
-	public UserDTO(UserModel user) {
-		this.id=user.getId();
-		this.email = user.getUsername();
-		this.name = user.getName();
-		this.created_at = user.getCreated_at();
-    }
+
 }

@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.CommentaireRequestDTO;
 import com.openclassrooms.mddapi.dto.CommentaireResponseDTO;
-import com.openclassrooms.mddapi.models.ArticleModel;
 import com.openclassrooms.mddapi.models.CommentaireModel;
 import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.ArticleRepository;
@@ -40,7 +39,6 @@ public class CommentaireService implements ICommentaireService {
         commentaireModel.setArticleId(commentaireRequestDTO.getArticle_id());
         commentaireModel.setCreated_atNow();
         commentaireModel.setAuteur_id(userModel.getId());
-        System.out.println(commentaireModel.toString()+"\n"+ commentaireRequestDTO.toString());
 
         // Sauvegarder le commentaire dans la base de données
         CommentaireModel savedCommentaire = commentaireRepository.save(commentaireModel);

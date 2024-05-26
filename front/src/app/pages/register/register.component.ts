@@ -55,6 +55,10 @@ export class RegisterComponent {
         error.error || '..................Une erreur est survenue lors de la connexion.';
       },
     });
+    
+  }
+  else{
+    console.log("erreur:", this.errorStr);
   }
     
     

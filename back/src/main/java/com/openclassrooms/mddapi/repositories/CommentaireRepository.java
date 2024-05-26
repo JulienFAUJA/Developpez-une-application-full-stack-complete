@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CommentaireRepository extends CrudRepository<CommentaireModel, Integer> {
-    public List<CommentaireModel> findAllByArticleId(Integer id);
+    List<CommentaireModel> findAllByArticleId(Integer id);
 
 }
 

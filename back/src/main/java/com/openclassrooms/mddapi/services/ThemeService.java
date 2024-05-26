@@ -1,9 +1,7 @@
 package com.openclassrooms.mddapi.services;
 
-import com.openclassrooms.mddapi.dto.ThemeRequestDTO;
 import com.openclassrooms.mddapi.dto.ThemeResponseDTO;
 import com.openclassrooms.mddapi.models.AbonnementModel;
-import com.openclassrooms.mddapi.models.CommentaireModel;
 import com.openclassrooms.mddapi.models.ThemeModel;
 import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.AbonnementRepository;
@@ -104,7 +102,6 @@ public class ThemeService implements IThemeService {
                     return themeResponseDTO;
                 })
                 .collect(Collectors.toList());
-        System.out.println("ALL THEMES:"+themeResponseDTOs.toString());
         return themeResponseDTOs;
     }
 

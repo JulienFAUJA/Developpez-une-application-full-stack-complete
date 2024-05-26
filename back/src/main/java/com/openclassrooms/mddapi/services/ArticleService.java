@@ -50,16 +50,13 @@ public class ArticleService implements IArticleService {
 	public ArticleResponseDTO getArticleById(Integer id) {
 		// Récup de l'article
 		ArticleModel articleModel = this.articleRepository.findById(id).orElseThrow();
-		System.out.println("Article fetched:" + articleModel.toString());
 
 		if (articleModel != null) {
 			Integer article_id = articleModel.getId();
 
-			System.out.println("article_id:" + article_id.toString());
 
 			// Récupérer les commentaires de cet article
 			List<CommentaireModel> commentaireModels = this.commentaireRepository.findAllByArticleId(article_id);
-			System.out.println("Commentaires fetched:" + commentaireModels.toString());
 
 			// Récupérer le thème
 			Optional<ThemeModel> themeModel = themeRepository.findById(articleModel.getThemeId());
@@ -84,7 +81,6 @@ public class ArticleService implements IArticleService {
 				// Récupérer l'auteur du commentaire
 				UserModel userModel = this.userRepository.findById(commentaire.getAuteur_id()).orElseThrow();
 				commentaireDTO.setUser_str(userModel.getName());
-				System.out.println("commentaireDTO:" + commentaireDTO.toString());
 				return commentaireDTO;
 			}).collect(Collectors.toList());
 
@@ -109,16 +105,13 @@ public class ArticleService implements IArticleService {
 				.stream()
 				.map(AbonnementModel::getThemeId) // Utilisez le modèle d'abonnement ici
 				.collect(Collectors.toList());
-		System.out.println("themeIds:"+themeIds);
 		// Récupérer tous les articles ayant ces theme_id
 		List<ArticleModel> articleModels = this.articleRepository.findAllByThemeIdIn(themeIds);
-		System.out.println(articleModels);
 		// Mapper les articles récupérés à ArticleResponseDTO
 		List<ArticleResponseDTO> articleResponseDTOs = articleModels.stream()
 				.map(article -> {
 					ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
 					articleDTO.setCreatedAt(article.getCreated_at());
-					System.out.println(article.toString());
 					// Récupérer l'auteur de l'article
 					UserModel authorModel = this.userRepository.findById(article.getAuteur_id())
 							.orElseThrow(() -> new RuntimeException("Author not found"));
@@ -132,7 +125,6 @@ public class ArticleService implements IArticleService {
 					return articleDTO;
 				})
 				.collect(Collectors.toList());
-		System.out.println(articleResponseDTOs);
 		return articleResponseDTOs;
 	}
 
@@ -156,10 +148,8 @@ public class ArticleService implements IArticleService {
 		Integer theme_id = theme.getId();
 		articleCreated.setThemeId(theme_id);
 		articleCreated.setAuteur_id(user.getId());
-		System.out.println("Article Mapped :"+articleCreated.toString());
 		try {
 			ArticleModel articleModelSaved = articleRepository.save(articleCreated);
-			System.out.println("Article Saved:"+articleModelSaved.toString());
 			ArticleResponseDTO articleResponse = modelMapper.map(articleModelSaved, ArticleResponseDTO.class);
 	    	return articleResponse;
 		}

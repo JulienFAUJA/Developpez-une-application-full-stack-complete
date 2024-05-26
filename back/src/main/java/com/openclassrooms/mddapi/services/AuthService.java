@@ -13,10 +13,8 @@ import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,7 +23,6 @@ import com.openclassrooms.mddapi.models.UserModel;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
 
-import javax.security.auth.login.LoginException;
 
 @Service
 public class AuthService implements IAuthService{
@@ -74,9 +71,11 @@ public class AuthService implements IAuthService{
 		if (userUpdateDTO.getName() != null) {
 			user.setName(userUpdateDTO.getName());
 		}
+		if(userUpdateDTO.getPassword() != null){
+			user.setPassword(passwordEncoder.encode(userUpdateDTO.getPassword()));
+		}
 		// Sauvegarder les modifications dans la base de données
 		userRepository.save(user);
-		System.out.println("UPDATED:"+user.toString()+"\nDTO:"+userUpdateDTO.toString());
 		return "User updated successfully";
 	}
 
@@ -137,15 +136,10 @@ public class AuthService implements IAuthService{
 		 //*/
 
     	    try {
-				System.out.println("user:"+request.toString());
 				Optional<UserModel> userOptional = userRepository.findByEmail(request.getEmail());
-
 				if (userOptional.isPresent()) {
-
 					UserModel user = userOptional.get();
-
 					if  (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-
 						return jwtService.generateToken(user.getEmail());
 					} else {
 						System.out.println("Mauvais password...");
@@ -155,11 +149,8 @@ public class AuthService implements IAuthService{
 					System.out.println("Mauvais email...");
 					return null;
 				}
-
-
     	    }
 			catch (AuthenticationException e) {
-				System.out.println("Authentication failed for user " + request.getEmail() +" / "+request.getPassword() + ": " + e.getMessage());
 				e.printStackTrace(); // Pour obtenir plus de détails sur l'erreur
 				return null;
 			}

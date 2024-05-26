@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.controllers;
 
 import com.openclassrooms.mddapi.dto.AbonnementRequestDTO;
 import com.openclassrooms.mddapi.dto.AbonnementResponseDTO;
-import com.openclassrooms.mddapi.repositories.AbonnementRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAbonnementService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +23,10 @@ public class AbonnementController {
     public ResponseEntity<?> SubscribeTheme(@Valid @RequestBody AbonnementRequestDTO abonnementRequestDTO, Authentication authentication) {
         String userEmail = authentication.getName();
         AbonnementResponseDTO abonnementResponseDTO = abonnementService.subscribeTheme(abonnementRequestDTO,userEmail);
-        //if (themeResponseDTO.getMessage() == "Bad request: ") {
         if (abonnementResponseDTO==null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(abonnementResponseDTO);
         }
-        //else if (themeResponseDTO.getMessage() == "Unauthorized: ") {
-        else if (abonnementResponseDTO==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(abonnementResponseDTO);
-        }
+
         else {
             return ResponseEntity.ok(abonnementResponseDTO);
         }
@@ -47,11 +42,6 @@ public class AbonnementController {
         if (response=="") {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request: ");
         }
-        /*
-        else if (status==null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: ");
-        }
-        */
 
         else {
             return ResponseEntity.ok(response);

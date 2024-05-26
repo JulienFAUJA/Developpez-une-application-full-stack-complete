@@ -29,8 +29,7 @@ private IAuthService authService;
 	public ResponseEntity<?> postRegister(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
 		TokenDTO token =  authService.register(userRegisterDTO);
 		if (token == null) {
-			//ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
-			String errorResponse= "Erreur dans le token...";
+			String errorResponse= "Erreur dans le formulaire...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {
@@ -42,13 +41,7 @@ private IAuthService authService;
 
 	@PostMapping(value ="/login", consumes={"application/json"})
     public ResponseEntity<?> login(@Valid @RequestBody(required = true) UserLoginDTO userLoginDTO) {
-
-
-
-
-		System.out.println("UserLoginDTO"+userLoginDTO.toString());
 		String token = authService.authenticating(userLoginDTO);
-
 		if (token == null) {
 			String errorResponse= "Unauthorized: Erreur d'dentifiants...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
@@ -63,7 +56,6 @@ private IAuthService authService;
 	@GetMapping(value ="/profile")
 	public ResponseEntity<?> getMe(Principal user) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.authService.me(user));
-		
 	}
 
 	@PutMapping(value ="/update", consumes={"application/json"})
@@ -72,8 +64,4 @@ private IAuthService authService;
 		return ResponseEntity.status(HttpStatus.OK).body(this.authService.update_user(userUpdateDTO, userEmail));
 
 	}
-	
-	
-	
-
 }

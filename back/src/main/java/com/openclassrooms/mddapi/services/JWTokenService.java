@@ -1,8 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-
-import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 import java.util.function.Function;
 
@@ -84,13 +81,6 @@ public class JWTokenService implements IJWTokenService{
     }
 
     public SecretKey getSigninKey() {
-        /*
-        Key key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS384);
-        String encodedKey = Base64.getUrlEncoder().withoutPadding().encodeToString(key.getEncoded());
-        System.out.println("Generated Key: " + encodedKey);
-        SECRET_KEY=encodedKey;
-        */
-
         byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }

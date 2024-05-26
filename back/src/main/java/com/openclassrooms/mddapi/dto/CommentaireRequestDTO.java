@@ -5,9 +5,6 @@ public class CommentaireRequestDTO {
 
     private String contenu;
     private Integer article_id;
-
-
-
     public String getContenu() {
         return contenu;
     }

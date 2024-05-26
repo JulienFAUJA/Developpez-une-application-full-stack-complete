@@ -103,12 +103,5 @@ public class UserRegisterDTO {
 		this.password = password;
 		this.created_at = created_at;
 	}
-	
-	public UserRegisterDTO(UserModel user) {
-		this.id=user.getId();
-		this.email = user.getUsername();
-		this.name = user.getName();
-		this.password = user.getPassword();
-		this.created_at = user.getCreated_at();
-    }
+
 }

@@ -51,9 +51,5 @@ public class UserLoginDTO {
 		return "UserLoginDTO [email=" + email + ", password=" + password+ "]";
 	}
 
-	
-	public UserLoginDTO(UserModel user) {
-		this.email = user.getUsername();
-		this.password = user.getPassword();
-    }
+
 }

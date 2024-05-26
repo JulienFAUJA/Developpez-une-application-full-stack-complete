@@ -9,8 +9,8 @@ import com.openclassrooms.mddapi.models.UserModel;
 
 @Repository
 public interface UserRepository  extends CrudRepository<UserModel, Integer> {
-	public Optional<UserModel> findByEmail(String email);
-	public Optional<UserModel> findByName(String name);
-	public Optional<UserModel> findById(Integer id);
+	 Optional<UserModel> findByEmail(String email);
+	 Optional<UserModel> findByName(String name);
+	 Optional<UserModel> findById(Integer id);
 
 }

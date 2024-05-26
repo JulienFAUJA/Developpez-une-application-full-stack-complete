@@ -12,6 +12,9 @@ public class UserUpdateDTO {
 	private String name;
 
 
+	private String password;
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -33,14 +36,29 @@ public class UserUpdateDTO {
 	public UserUpdateDTO() {
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	public UserUpdateDTO(String email, String name) {
 		this.email = email;
 		this.name = name;
 	}
+
+	public UserUpdateDTO(String email, String name, String password) {
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		return "UserUpdateDTO [email=" + email + ", name=" + name + "]";
+		return "UserUpdateDTO [email=" + email + ", name=" + name + " ,password="+password+"]";
 	}
 
 }

@@ -12,5 +12,5 @@ public interface IThemeService {
 
     List<ThemeResponseDTO> getAllThemesForUser(String userEmail);
 
-    public List<ThemeResponseDTO> getAllThemes(String userEmail);
+     List<ThemeResponseDTO> getAllThemes(String userEmail);
 }
