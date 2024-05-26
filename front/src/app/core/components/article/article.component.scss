@@ -9,6 +9,14 @@ mat-card{
         margin-left: 0;
         padding-left: 0;
     }
+    mat-card-subtitle{
+        .date{
+            margin-right: 5%;
+        }
+        .auteur{
+            margin-left: 5%;
+        }
+    }
     mat-card-content{
 
         display: -webkit-box;

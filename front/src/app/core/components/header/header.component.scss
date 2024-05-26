@@ -24,7 +24,7 @@
 }
 
 .nav_item_li {
-    margin-left: 20px; /* Espace entre les éléments de navigation */
+    margin-left: 40px; /* Espace entre les éléments de navigation */
 }
 
 .user_icon {
@@ -54,10 +54,14 @@
 
 
 .sidebar {
+    padding: 0;
     position: fixed;
     top: 0;
     right: -100%; 
-    width: 90%; 
+    bottom: 0;
+    overflow-y:hidden; 
+    
+    width: 70%; 
     height: 100%; 
     background-color: #fff;
     transition: transform 0.3s ease-in-out; 
@@ -78,14 +82,49 @@
   /* Classe à toggler pour montrer ou cacher le menu */
   .sidebar.open {
     transform: translateX(-100%); /* Fait glisser le menu dans la vue */
+
   }
   
   /* Classe à toggler pour montrer ou cacher l'overlay */
   .overlay.show {
     display: block;
   }
-  
 
+
+
+.header_nav_ul_mobile {
+    padding: 0;
+    padding-top: 25px;
+    list-style-type: none; 
+    height:100%;
+    width: 100%;
+    text-align: right;
+    justify-items: flex-end;
+    li{
+        padding: 0;
+        margin-bottom: 25px;
+        width: fit-content;
+    margin-right: 0;
+    }
+    :last-child{
+        margin-top: 60%;
+    
+    }
+    *{
+        color: black;
+        font-size: larger;
+    }
+
+}
+
+
+
+
+  
+*.menu-open {
+    
+    overflow: hidden;
+  }
 
 
 

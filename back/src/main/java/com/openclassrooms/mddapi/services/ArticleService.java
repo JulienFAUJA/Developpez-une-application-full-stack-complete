@@ -117,7 +117,8 @@ public class ArticleService implements IArticleService {
 		List<ArticleResponseDTO> articleResponseDTOs = articleModels.stream()
 				.map(article -> {
 					ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
-
+					articleDTO.setCreatedAt(article.getCreated_at());
+					System.out.println(article.toString());
 					// Récupérer l'auteur de l'article
 					UserModel authorModel = this.userRepository.findById(article.getAuteur_id())
 							.orElseThrow(() -> new RuntimeException("Author not found"));

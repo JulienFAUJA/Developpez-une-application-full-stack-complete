@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="sub_header">
     <button class="purple_btn create_btn" routerLink="/article/create" routerLinkActive="active-item">Créer un article</button>
-    <a class="trier_par" href="javascript:void(0);">
+    <a class="trier_par" (click)="toggleSortByDate()">
        Trier par  <mat-icon aria-hidden="false" aria-label="Example home icon"   fontIcon="{{ isAscending ? 'north' : 'south' }}"></mat-icon>
     </a>
    

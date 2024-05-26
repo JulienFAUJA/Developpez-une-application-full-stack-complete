@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Article } from '../models/article.model';
 import { AuthService } from './auth.service';
 import { ArticleRequest } from '../models/articleRequest.model';
@@ -18,7 +18,8 @@ export class ArticlesService {
   public all(): Observable<Article[]> {
     const token = localStorage.getItem('token');
     console.log("token:"+token);
-    return this.httpClient.get<Article[]>(`${this.pathService}/all`);
+    return this.httpClient.get<Article[]>(`${this.pathService}/all`)
+    .pipe(tap((response) => console.log('Get response: ', response)));
   }
 
   public detail(id: number): Observable<Article> {
