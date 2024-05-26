@@ -69,6 +69,7 @@ export class UserComponent implements OnInit {
 
 
   onSubmit() {
+    if (this.userForm.valid) {  // Vérifie si le formulaire est valide
     this.destroy$ = new Subject<boolean>();
     const userRequest = this.userForm.value as UserRequest;
     this.authService.update(userRequest)
@@ -82,6 +83,7 @@ export class UserComponent implements OnInit {
           error || '..................Une erreur est survenue lors de la connexion.';
       },
     });
+  }
 
     
     

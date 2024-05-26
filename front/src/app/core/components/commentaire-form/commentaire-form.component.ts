@@ -34,6 +34,7 @@ articleId!:number | undefined;
   }
 
   onSubmitForm():void {
+    if (this.commentaireForm.valid) {  // Vérifie si le formulaire est valide
     this.destroy$ = new Subject<boolean>();
     const commentaireRequest = this.commentaireForm.value as CommentaireRequest;
     commentaireRequest.article_id=this.articleId;
@@ -50,6 +51,7 @@ articleId!:number | undefined;
           error || '..................Une erreur est survenue lors de la connexion.';
       },   
     });
+  }
         
     
     

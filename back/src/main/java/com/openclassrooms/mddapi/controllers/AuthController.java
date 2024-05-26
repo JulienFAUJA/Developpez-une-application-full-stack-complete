@@ -50,8 +50,7 @@ private IAuthService authService;
 		String token = authService.authenticating(userLoginDTO);
 
 		if (token == null) {
-			//ArticleResponseDTO errorResponse = new ArticleResponseDTO("Unauthorized: ");
-			String errorResponse= "Unauthorized: Erreur dans le token...";
+			String errorResponse= "Unauthorized: Erreur d'dentifiants...";
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {

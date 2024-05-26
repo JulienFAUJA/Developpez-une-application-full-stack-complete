@@ -45,6 +45,7 @@ export class ArticleCreateComponent implements OnInit {
     });
   }
   onSubmitForm():void {
+    if (this.articleForm.valid) {  // Vérifie si le formulaire est valide
     this.destroy$ = new Subject<boolean>();
     const articleRequest = this.articleForm.value as ArticleRequest;
     this.articlesService.create(articleRequest)
@@ -62,6 +63,7 @@ export class ArticleCreateComponent implements OnInit {
 
       },
     });
+  }
     
     
     

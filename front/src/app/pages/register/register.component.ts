@@ -38,6 +38,7 @@ export class RegisterComponent {
 
   
   onSubmitForm():void {
+    if (this.registerForm.valid) {  // Vérifie si le formulaire est valide
     this.destroy$ = new Subject<boolean>();
     const registerRequest = this.registerForm.value as RegisterRequest;
     this.authService.register(registerRequest)
@@ -46,16 +47,15 @@ export class RegisterComponent {
     
     .subscribe({
       next: (response) => {
-        (this.errorStr = ''),
           localStorage.setItem('token', response.token);
           this.router.navigate(['article/all']);
       },
       error: (error) => {
         this.errorStr =
-          error || '..................Une erreur est survenue lors de la connexion.';
+        error.error || '..................Une erreur est survenue lors de la connexion.';
       },
     });
-    
+  }
     
     
 }

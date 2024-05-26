@@ -3,6 +3,7 @@
 <div class="form_container login-container">
   <form [formGroup]="loginForm">
     <h3>Se connecter</h3>
+    <span class="error_msg" *ngIf="errorStr.length>0">{{errorStr}}</span>
     <div class="form-group">
       <label for="email">E-mail</label>
       <input

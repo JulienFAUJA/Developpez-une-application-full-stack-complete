@@ -39,8 +39,10 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmitForm():void {
+    if (this.loginForm.valid) {  // Vérifie si le formulaire est valide
     this.destroy$ = new Subject<boolean>();
     const loginRequest = this.loginForm.value as LoginRequest;
+    
     this.authService.login(loginRequest)
     .pipe(
       takeUntil(this.destroy$))
@@ -53,10 +55,12 @@ export class LoginComponent implements OnInit{
       },
       error: (error) => {
         this.errorStr =
-          error || '..................Une erreur est survenue lors de la connexion.';
+          error.error || '..................Une erreur est survenue lors de la connexion.',
+          console.log("erreur",this.errorStr);
       },
     });
-    
+    console.log(this.errorStr);
+  }
     
     
 }
