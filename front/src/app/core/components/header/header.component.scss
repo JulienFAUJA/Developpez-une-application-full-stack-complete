@@ -27,10 +27,21 @@
     margin-left: 40px; /* Espace entre les éléments de navigation */
 }
 
+.active-item {
+    color: $primary_color; /* Change la couleur en orange, par exemple */
+    font-weight: bold; /* Rend le texte plus épais */
+  }
+  
+
 .user_icon {
     display: flex; /* Pour s'assurer que l'icône de l'utilisateur est correctement alignée */
     align-items: center;
 }
+.active-item .user_icon_img {
+    border: 3px solid $primary_color; /* Ajoute une bordure violette */
+    border-radius: 50%; /* Garde la forme circulaire */
+  }
+  
  a{
     text-decoration: none;
     color: black;
