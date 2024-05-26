@@ -1,30 +1,33 @@
 <app-header></app-header>
 
 <section class="article-container" *ngIf="article">
-    <mat-card>
-        <mat-card-title>
-            {{ article.titre}}
-        </mat-card-title>
-           
-       
-        <mat-card-content>
-            <span class="second_line">
-                <span class="article_date">{{article.createdAt | date}}</span>
-                <span class="article_auteur">{{article.auteur}}</span>
-                <span class="article_theme">{{article.theme}}</span>
-            </span>
-            
-            {{ article.contenu }}
-        </mat-card-content>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <h3 class="comment_title_section">Commentaires</h3>
+  <mat-card>
+    <mat-card-title>
+      {{ article.titre }}
+    </mat-card-title>
 
-    <section class="feed_comments">
-        <app-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire"
-       ></app-commentaire>
-    </section>
-        <app-commentaire-form [articleId]="article.id" (newCommentPosted)="loadArticle()"></app-commentaire-form>
+    <mat-card-content>
+      <span class="second_line">
+        <span class="article_date">{{ article.createdAt | date : "EEEE d MMMM y à H:mm:ss" }}</span>
+        <span class="article_auteur">{{ article.auteur }}</span>
+        <span class="article_theme">{{ article.theme }}</span>
 
+      </span>
 
+      {{ article.contenu }}
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <h3 class="comment_title_section">Commentaires</h3>
+
+  <section class="feed_comments">
+    <app-commentaire
+      *ngFor="let commentaire of commentaires"
+      [commentaire]="commentaire"
+    ></app-commentaire>
+  </section>
+  <app-commentaire-form
+    [articleId]="article.id"
+    (newCommentPosted)="loadArticle()"
+  ></app-commentaire-form>
 </section>

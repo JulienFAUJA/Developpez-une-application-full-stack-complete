@@ -2,7 +2,11 @@
     <span class="landscape" *ngIf="screen_orientation === 'landscape-primary'; else mobileView">
         <span class="comment_auteur">
             {{ commentaire.user_str }} 
+            <small class="comment_date">
+                {{ commentaire.createdAt  | date : "d/MM/y - H:mm:ss"}} 
+            </small>
         </span>
+        
         <span class="comment_content">
             {{ commentaire.contenu }} 
         </span>
@@ -14,6 +18,9 @@
             </span>
             <span class="comment_auteur">
                 {{ commentaire.user_str }} 
+                <small class="comment_date">
+                    {{ commentaire.createdAt  | date : "d/MM/y - H:mm:ss"}} 
+                </small>
             </span>
         </span>
       </ng-template>

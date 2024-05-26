@@ -81,12 +81,13 @@ public class ArticleService implements IArticleService {
 				// Récupérer l'auteur du commentaire
 				UserModel userModel = this.userRepository.findById(commentaire.getAuteur_id()).orElseThrow();
 				commentaireDTO.setUser_str(userModel.getName());
+				commentaireDTO.setCreatedAt(commentaire.getCreated_at());
 				return commentaireDTO;
 			}).collect(Collectors.toList());
 
 			// Ajouter les commentaires à ArticleResponseDTO
 			article_dto.setCommentaires(commentaires_dto);
-
+			article_dto.setCreatedAt(articleModel.getCreated_at());
 			return article_dto;
 		}
 		return null;

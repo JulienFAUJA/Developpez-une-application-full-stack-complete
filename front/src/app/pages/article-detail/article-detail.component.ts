@@ -43,6 +43,7 @@ ngOnDestroy(): void {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (articleResponse) => {
+            console.log("article:", articleResponse);
             this.article = articleResponse;
             this.commentaires=articleResponse.commentaires;
           },

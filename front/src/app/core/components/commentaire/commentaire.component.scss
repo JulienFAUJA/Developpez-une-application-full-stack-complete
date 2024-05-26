@@ -13,7 +13,15 @@ mat-card {
       padding: 10px;
       border-radius: 25px;
       width: 22%;
-      height: 100%;
+      height: 50%;
+      .comment_date{
+        display: block;
+        color: grey;
+        text-align: left;
+        padding:0;
+        width: 100%;
+      }
+     
     }
     .comment_content {
       
@@ -39,15 +47,19 @@ mat-card {
     .comment_content {
       display: block;
       width: 100%;
-      height: 80%;
+      height: 65%;
      
     }
     .comment_auteur {
       display: block;
       width: 100%;
-      height: 15%;
+      height: 30%;
       border-radius: 0;
-    margin-right: 0;
+      padding: 2%;
+      .comment_date{
+        margin-left: 10px;
+
+      }
       margin-top: 2%;
       
      text-align: right;

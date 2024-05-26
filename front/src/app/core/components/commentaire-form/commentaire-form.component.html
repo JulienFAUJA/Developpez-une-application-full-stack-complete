@@ -1,10 +1,16 @@
 <form [formGroup]="commentaireForm" (ngSubmit)="onSubmitForm()">
   <div class="comment_form">
+    <div *ngIf="commentaireForm.get('contenu')?.errors && commentaireForm.get('contenu')?.touched">
+      <small class="text-danger" *ngIf="commentaireForm.get('contenu')?.errors?.['required']">Vous devez écrire quelque chose</small>
+      <small class="text-danger" *ngIf="commentaireForm.get('contenu')?.errors?.['minLength']">Vous devez être plus inspiré que ça...</small>
+      <small class="text-danger" *ngIf="commentaireForm.get('contenu')?.errors?.['maxLength']">Doucement, C'est un commentaire, pas un roman...</small>
+    </div>
     <textarea
       formControlName="contenu"
       placeholder="Ecrivez votre commentaire..."
       class="rounded-textarea"
     ></textarea>
+    
     <button class="send" type="submit">
       <mat-icon
         aria-hidden="false"

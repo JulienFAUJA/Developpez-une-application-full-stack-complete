@@ -28,7 +28,7 @@ articleId!:number | undefined;
 
   ngOnInit():void{
     this.commentaireForm = this.fb.group({
-      contenu:['', [Validators.required, Validators.minLength(3), Validators.maxLength(2000)]],
+      contenu:['', [Validators.required, Validators.minLength(100), Validators.maxLength(2000)]],
     });
 
   }
