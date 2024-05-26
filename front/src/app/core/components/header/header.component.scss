@@ -3,7 +3,6 @@
 .header-container {
     position: sticky;
     background-color: white;
-    //z-index: 1;
     display: flex; /* Utilisez flex au lieu de inline-flexbox */
     justify-content: space-between; /* Sépare les éléments entre les deux extrémités */
     align-items: center; /* Centre les éléments verticalement */
@@ -56,13 +55,6 @@
  }
 
 }
-
-
-
-
-
-
-
 
 .sidebar {
     padding: 0;
@@ -128,72 +120,8 @@
 
 }
 
-
-
-
-  
 *.menu-open {
     
     overflow: hidden;
   }
-
-
-
-
-
-/* 
-.nav_overlay_container {
-    position: fixed; 
-    top: 10%;
-    left: 0;
-    width: 100%;
-    height: 90%;
-    display: flex;
-    z-index: 2000; 
-}
-
-.blur_screen_div {
-    flex: 0 0 20%;
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(2px); 
-}
-
-.nav_overlay {
-    flex: 0 0 80%; 
-    background-color:white; /
-    top: 0;
-    height: 100%;
-    z-index: 2100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.header_nav_ul_mobile {
-    display: flex;
-    flex-direction: column;
-    align-items:flex-end;
-    padding: 0;
-    list-style-type: none; 
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    margin-right: 20px;
-    margin-bottom: 50px;
-    :last-child{
-        margin-top: 100%;
-        padding: 0;
-        max-height:96px;
-        display: flex;
-        align-items:flex-end;
-        flex-direction:column-reverse;
-       }
-       *{
-        color: black;
-        font-size: larger;
-       }
-   
-} */
-
-
 

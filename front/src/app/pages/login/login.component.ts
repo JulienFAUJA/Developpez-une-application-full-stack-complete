@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
-  FormControl,
   FormBuilder,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { LoginRequest } from 'src/app/core/interfaces/loginRequest.interface';
-import { SessionInformation } from 'src/app/core/interfaces/sessionInformation.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -41,17 +39,14 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmitForm():void {
-    console.log("form.value: ",this.loginForm.value);
     this.destroy$ = new Subject<boolean>();
     const loginRequest = this.loginForm.value as LoginRequest;
-    console.log("loginRequest: ",loginRequest);
     this.authService.login(loginRequest)
     .pipe(
       takeUntil(this.destroy$))
     
     .subscribe({
       next: (response) => {
-        //tap(response => console.log),
         tap((response) => console.log('[LoginComponent] Login response: ', response)),
           localStorage.setItem('token', response.token);
           this.router.navigate(['article/all']);
@@ -59,8 +54,6 @@ export class LoginComponent implements OnInit{
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
-          console.log("erreur: ", this.errorStr);
-          //console.log("token: ", this.errorStr.text);
       },
     });
     

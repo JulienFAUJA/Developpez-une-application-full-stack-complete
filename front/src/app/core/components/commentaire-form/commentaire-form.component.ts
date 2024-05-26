@@ -27,41 +27,28 @@ articleId!:number | undefined;
   ) {}
 
   ngOnInit():void{
-    
     this.commentaireForm = this.fb.group({
-     
       contenu:['', [Validators.required, Validators.minLength(3), Validators.maxLength(2000)]],
-     
-      
     });
 
   }
 
   onSubmitForm():void {
-    console.log("form.value: ",this.commentaireForm.value);
     this.destroy$ = new Subject<boolean>();
     const commentaireRequest = this.commentaireForm.value as CommentaireRequest;
     commentaireRequest.article_id=this.articleId;
-    console.log("commentaireRequest: ",commentaireRequest);
     this.commentairesService.create(commentaireRequest)
-   
     .pipe(
       takeUntil(this.destroy$))
-    
     .subscribe({
       next: (response) => {
-        (this.errorStr = ''),
-        tap(response => console.log)
         this.commentaireForm.reset();
         this.newCommentPosted.emit();
-        
       },
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
-          console.log("erreur: ", this.errorStr);
-      },
-      
+      },   
     });
         
     

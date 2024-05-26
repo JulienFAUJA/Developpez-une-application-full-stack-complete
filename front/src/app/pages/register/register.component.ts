@@ -34,15 +34,12 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(passwordPattern)]],
       
     });
-    console.log(this.registerForm.value);
   }
 
   
   onSubmitForm():void {
-    console.log("form.value: ",this.registerForm.value);
     this.destroy$ = new Subject<boolean>();
     const registerRequest = this.registerForm.value as RegisterRequest;
-    console.log("registerRequest: ",registerRequest);
     this.authService.register(registerRequest)
     .pipe(
       takeUntil(this.destroy$))
@@ -56,7 +53,6 @@ export class RegisterComponent {
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
-          console.log("erreur: ", this.errorStr);
       },
     });
     

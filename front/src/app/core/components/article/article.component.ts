@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../models/user.model';
-import { Theme } from '../../models/theme.model';
-import { Commentaire } from '../../models/commentaire.model';
 import { Article } from '../../models/article.model';
 
 @Component({

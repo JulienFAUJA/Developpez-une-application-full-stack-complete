@@ -1,6 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,7 +13,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.screen_orientation = window.screen.orientation.type;
-    console.log(this.screen_orientation);
     window.addEventListener('orientationchange', this.updateOrientation);
     this.updateOrientation(); // Appel initial pour définir l'orientation
   }
@@ -25,19 +23,10 @@ export class HeaderComponent implements OnInit {
 
   updateOrientation = (): void => {
     this.screen_orientation = window.screen.orientation.type;
-    console.log('Orientation changed to:', this.screen_orientation);
   };
 
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event): void {
-    if (this.menuOpen) {
-      event.preventDefault();
-      window.scrollTo(0, 0);
-    }
-  }
   
-
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
     document.getElementById('sidebar')!.classList.toggle('open');

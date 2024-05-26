@@ -31,7 +31,6 @@ export class UserComponent implements OnInit {
       email:['', [Validators.email]],
       
     });
-      //this.loadThemes();
       this.get();
     }
 
@@ -53,8 +52,6 @@ export class UserComponent implements OnInit {
         error: (error) => {
           this.errorStr =
             error || '..................Une erreur est survenue lors de la connexion.';
-            console.log("erreur: ", this.errorStr);
-            //console.log("token: ", this.errorStr.text);
         },
       });
     }
@@ -72,26 +69,17 @@ export class UserComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.userForm.value);
-    console.log("form.value: ",this.userForm.value);
     this.destroy$ = new Subject<boolean>();
     const userRequest = this.userForm.value as UserRequest;
-    console.log("userRequest: ",userRequest);
     this.authService.update(userRequest)
     .pipe(
       takeUntil(this.destroy$))
-    
     .subscribe({
       next: (response) => {
-      
-         
-          
       },
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
-          console.log("erreur: ", this.errorStr);
-          //console.log("token: ", this.errorStr.text);
       },
     });
 

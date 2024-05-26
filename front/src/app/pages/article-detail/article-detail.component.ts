@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Article } from 'src/app/core/models/article.model';
 import { Commentaire } from 'src/app/core/models/commentaire.model';
-import { Theme } from 'src/app/core/models/theme.model';
-import { User } from 'src/app/core/models/user.model';
 import { ArticlesService } from 'src/app/core/services/articles.service';
 
 @Component({
@@ -25,7 +23,6 @@ export class ArticleDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadArticle();
-    //this.commentaires=[];
   }
 
   

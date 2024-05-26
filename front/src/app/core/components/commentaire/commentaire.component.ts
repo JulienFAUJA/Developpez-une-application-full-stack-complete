@@ -15,7 +15,6 @@ export class CommentaireComponent implements OnInit {
   
   ngOnInit(): void {
     this.screen_orientation = window.screen.orientation.type;
-    console.log(this.screen_orientation);
     window.addEventListener('orientationchange', this.updateOrientation);
     this.updateOrientation(); // Appel initial pour définir l'orientation
   }
@@ -26,7 +25,6 @@ export class CommentaireComponent implements OnInit {
 
   updateOrientation = (): void => {
     this.screen_orientation = window.screen.orientation.type;
-    console.log('Orientation changed to:', this.screen_orientation);
   };
 
 }

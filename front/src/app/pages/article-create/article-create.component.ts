@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { ArticleRequest } from 'src/app/core/models/articleRequest.model';
@@ -45,10 +45,8 @@ export class ArticleCreateComponent implements OnInit {
     });
   }
   onSubmitForm():void {
-    console.log("form.value: ",this.articleForm.value);
     this.destroy$ = new Subject<boolean>();
     const articleRequest = this.articleForm.value as ArticleRequest;
-    console.log("articleRequest: ",articleRequest);
     this.articlesService.create(articleRequest)
     .pipe(
       takeUntil(this.destroy$))
@@ -56,15 +54,12 @@ export class ArticleCreateComponent implements OnInit {
     .subscribe({
       next: (response) => {
         (this.errorStr = ''),
-        console.log(response);
         this.router.navigate(['article/all']);
-          
       },
       error: (error) => {
         this.errorStr =
           error || '..................Une erreur est survenue lors de la connexion.';
-          console.log("erreur: ", this.errorStr);
-          //console.log("token: ", this.errorStr.text);
+
       },
     });
     

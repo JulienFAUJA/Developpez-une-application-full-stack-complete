@@ -16,8 +16,6 @@ export class ArticlesService {
             ) {}
 
   public all(): Observable<Article[]> {
-    const token = localStorage.getItem('token');
-    console.log("token:"+token);
     return this.httpClient.get<Article[]>(`${this.pathService}/all`)
     .pipe(tap((response) => console.log('Get response: ', response)));
   }
@@ -28,7 +26,6 @@ export class ArticlesService {
 
   public create(article: ArticleRequest): Observable<Article> {
     const token = localStorage.getItem('token');
-    console.log("token:"+token);
     if (!token) {
       this.authService.logOut();
     }
