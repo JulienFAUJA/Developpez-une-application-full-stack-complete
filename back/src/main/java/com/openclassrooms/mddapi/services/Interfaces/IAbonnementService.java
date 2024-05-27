@@ -1,11 +1,17 @@
 package com.openclassrooms.mddapi.services.Interfaces;
 
-import com.openclassrooms.mddapi.dto.AbonnementRequestDTO;
-import com.openclassrooms.mddapi.dto.AbonnementResponseDTO;
-
+/**
+ * The interface Abonnement service.
+ */
 public interface IAbonnementService {
-    AbonnementResponseDTO subscribeTheme(AbonnementRequestDTO abonnementRequestDTO, String userEmail);
 
+    /**
+     * Toggle subscription string.
+     *
+     * @param id        the id
+     * @param userEmail the user email
+     * @return the string
+     */
     String toggleSubscription(Integer id, String userEmail);
 
 }

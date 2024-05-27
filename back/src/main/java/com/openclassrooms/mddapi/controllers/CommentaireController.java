@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The type Commentaire controller.
+ */
 @RestController
 @RequestMapping("/api/commentaire")
 public class CommentaireController {
@@ -18,6 +21,13 @@ public class CommentaireController {
     private ICommentaireService commentaireService;
 
 
+    /**
+     * Post commentaire method.
+     *
+     * @param commentaireRequestDTO the commentaire request dto
+     * @param authentication        the authentication
+     * @return the response entity
+     */
     @ResponseBody
     @PostMapping("/create")
     public ResponseEntity<?> postCommentaire(@Valid @RequestBody CommentaireRequestDTO commentaireRequestDTO, Authentication authentication) {

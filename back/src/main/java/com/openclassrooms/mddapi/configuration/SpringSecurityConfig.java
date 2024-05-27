@@ -15,6 +15,9 @@ import com.openclassrooms.mddapi.services.UserService;
 
 @Configuration
 @EnableWebSecurity
+/**
+ * Classe qui gère les filtres pour la sécurité
+ */
 public class SpringSecurityConfig{
 	
 	@Autowired

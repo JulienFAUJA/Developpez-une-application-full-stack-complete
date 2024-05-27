@@ -14,6 +14,9 @@ import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
 
 import jakarta.validation.Valid;
 
+/**
+ * The type Auth controller.
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -22,8 +25,14 @@ public class AuthController {
 
 @Autowired
 private IAuthService authService;
-	
 
+
+	/**
+	 * Post register method.
+	 *
+	 * @param userRegisterDTO the user register dto
+	 * @return the token
+	 */
 	@PostMapping(value ="/register")
 	@ResponseBody
 	public ResponseEntity<?> postRegister(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
@@ -36,9 +45,14 @@ private IAuthService authService;
 			return ResponseEntity.ok(token);
 		}
 	}
-	
 
 
+	/**
+	 * Login response method.
+	 *
+	 * @param userLoginDTO the user login dto
+	 * @return the token
+	 */
 	@PostMapping(value ="/login", consumes={"application/json"})
     public ResponseEntity<?> login(@Valid @RequestBody(required = true) UserLoginDTO userLoginDTO) {
 		String token = authService.authenticating(userLoginDTO);
@@ -47,17 +61,29 @@ private IAuthService authService;
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 		}
 		else {
-			System.out.println("Token:"+token);
 			return ResponseEntity.ok(new TokenDTO(token));
 		} 
     }
-	
 
+
+	/**
+	 * Gets profile page.
+	 *
+	 * @param user the user
+	 * @return the user data
+	 */
 	@GetMapping(value ="/profile")
 	public ResponseEntity<?> getMe(Principal user) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.authService.me(user));
 	}
 
+	/**
+	 * Update response entity.
+	 *
+	 * @param userUpdateDTO  the user update dto
+	 * @param authentication the authentication
+	 * @return the response entity
+	 */
 	@PutMapping(value ="/update", consumes={"application/json"})
 	public ResponseEntity<?> update(@Valid @RequestBody(required = true) UserUpdateDTO userUpdateDTO, Authentication authentication) {
 		String userEmail = authentication.getName();

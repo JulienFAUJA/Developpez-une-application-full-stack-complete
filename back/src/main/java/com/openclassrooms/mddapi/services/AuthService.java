@@ -24,6 +24,9 @@ import com.openclassrooms.mddapi.repositories.UserRepository;
 import com.openclassrooms.mddapi.services.Interfaces.IAuthService;
 
 
+/**
+ * The type Auth service.
+ */
 @Service
 public class AuthService implements IAuthService{
 	
@@ -43,7 +46,14 @@ public class AuthService implements IAuthService{
 	 private final JWTokenService jwtService;
 	 private final AuthenticationManager authenticationManager;
 
-	 public AuthService(PasswordEncoder passwordEncoder, JWTokenService jwtService, AuthenticationManager authenticationManager) {
+	/**
+	 * Instantiates a new Auth service.
+	 *
+	 * @param passwordEncoder       the password encoder
+	 * @param jwtService            the jwt service
+	 * @param authenticationManager the authentication manager
+	 */
+	public AuthService(PasswordEncoder passwordEncoder, JWTokenService jwtService, AuthenticationManager authenticationManager) {
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;

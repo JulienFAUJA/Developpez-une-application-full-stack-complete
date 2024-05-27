@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type Theme service.
+ */
 @Service
 public class ThemeService implements IThemeService {
 

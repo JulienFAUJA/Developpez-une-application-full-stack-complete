@@ -23,6 +23,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
+/**
+ * The type Article service.
+ */
 @Service
 public class ArticleService implements IArticleService {
 	

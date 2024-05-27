@@ -15,6 +15,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ * The type Jw token service.
+ */
 @Service
 public class JWTokenService implements IJWTokenService{
 

@@ -23,6 +23,9 @@ import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
+/**
+ * Classe de configuration pour le Auth
+ */
 public class AuthConfig {
 	
 	@Autowired
