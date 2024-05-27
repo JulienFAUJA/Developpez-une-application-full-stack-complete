@@ -127,24 +127,13 @@ public class AuthService implements IAuthService{
 	        return null;
         }
         else {
-        	user = userRepository.save(user);
+        	userRepository.save(user);
         }
         TokenDTO token = new TokenDTO(jwt);
 	    return token;
      }
 
      public String authenticating(UserLoginDTO request) {
-
-		/*
-		 List<UserModel> users = (List<UserModel>) userRepository.findAll();
-		 for (UserModel user : users) {
-			 user.setPassword(passwordEncoder.encode("F1x3m61@"));
-			 userRepository.save(user);
-		 }
-			System.out.println("OK");
-
-		 //*/
-
     	    try {
 				Optional<UserModel> userOptional = userRepository.findByEmail(request.getEmail());
 				if (userOptional.isPresent()) {
@@ -152,11 +141,9 @@ public class AuthService implements IAuthService{
 					if  (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
 						return jwtService.generateToken(user.getEmail());
 					} else {
-						System.out.println("Mauvais password...");
 						return null;
 					}
 				} else {
-					System.out.println("Mauvais email...");
 					return null;
 				}
     	    }

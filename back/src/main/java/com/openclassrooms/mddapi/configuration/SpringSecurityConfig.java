@@ -54,9 +54,8 @@ public class SpringSecurityConfig{
                 .requestMatchers(
                 		LocationHelpers.REGISTER_URI, 
                 		LocationHelpers.LOGIN_URI,
-                		LocationHelpers.STATIC_URI,
-                		LocationHelpers.STATIC_URI_RECURSIVE
-                		).permitAll()
+                		LocationHelpers.STATIC_URI
+				).permitAll()
                 // Pour tout le reste il faut être authentifié
                 .anyRequest().authenticated())
        .authenticationProvider(authenticationProvider)

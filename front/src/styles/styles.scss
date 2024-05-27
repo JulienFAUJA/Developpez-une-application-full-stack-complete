@@ -6,7 +6,10 @@ $mobileLimitSize: 768px;
 $largeScreenLimitSize: 1920px;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  padding: 0; 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .error_msg{
   color: red;
