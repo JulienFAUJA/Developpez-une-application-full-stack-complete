@@ -47,7 +47,7 @@ export class UserComponent implements OnInit {
           this.userForm.setValue({
             name:response.user.name,
             email:response.user.email,
-            password:response.user.password
+            password:''
           }),
           this.themes=response.subscribedThemes;
             
