@@ -1,5 +1,9 @@
 @import '../../../../styles/styles';
-
+.back_container{
+    margin-top: 50px;
+    padding-top: 50px;
+    z-index: 1;
+}
 .mat-icon{
     -webkit-user-select: none;
     user-select: none;
